@@ -44,7 +44,7 @@ public class TiposDados {
         // TODO code application logic here
         
         byte idadepessoa = 25;
-        long populacaomundial = 800000000;
+        long populacaomundial = 8000000000L;
         int distanciacidade = 500;
         short diaanos = 365;
 
