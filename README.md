@@ -3,7 +3,7 @@ Progração oracle - Java Programing
 
 Exercício 1
 
-public class Atividade {
+public class Atividade 1 {
 
     /**
      * @param args the command line arguments
@@ -35,23 +35,6 @@ public class Atividade {
     
 }
 
-Exercício 2
-
-Atividade 2: Tipos de Dados e Limites
-
-Objetivo: Entender a diferença de tamanho e faixa de valores entre os tipos inteiros.
-Instruções: Identifique qual tipo primitivo (byte, short, int, long) é o mais apropriado para armazenar cada um dos seguintes valores, sem desperdiçar memória.
-A idade de uma pessoa (ex: 25)
-A população mundial (ex: 8.000.000.000)
-A distância entre duas cidades em km (ex: 500)
-O número de dias em um ano (ex: 365)
-
-package tiposdados;
-
-/**
- *
- * @author Aluno
- */
 public class TiposDados {
 
     /**
