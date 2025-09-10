@@ -62,3 +62,30 @@ public class TiposDados {
         // Imprima o valor de cada variável
 }
 
+Exercício 3
+
+public class Exercício 2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        int meuInt = 150;
+        short meuShort = (short)meuInt; // Erro de compilação!
+        
+        double meuDouble = 9.78;
+        int outroInt = (int)meuDouble; // Erro de compilação!
+
+        double meuFloat = 12.34;
+        
+        System.out.println(meuShort);
+        System.out.println(outroInt);
+        System.out.println(meuFloat);
+
+        // Imprima o valor de cada variável
+
+    }
+    
+}
