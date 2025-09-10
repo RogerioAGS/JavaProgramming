@@ -60,6 +60,7 @@ public class TiposDados {
         System.out.println(distanciacidade);
         System.out.println(diaanos);
         // Imprima o valor de cada variável
+      }  
 }
 
 Exercício 3
