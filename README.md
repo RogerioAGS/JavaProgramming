@@ -5,7 +5,13 @@ Exercício 1
 
 
 public class Atividade 1 {
-
+     
+    /**
+    *Desafios de Código
+    *Desafio 1: Invertendo Valores
+    *Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
+    *Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
+     */
     /**
      * @param args the command line arguments
      */
@@ -37,7 +43,16 @@ public class Atividade 1 {
 }
 
 Execício 2
-
+    /**
+    *Atividade 2: Tipos de Dados e Limites
+    *Objetivo: Entender a diferença de tamanho e faixa de valores entre os tipos inteiros.
+    *Instruções: Identifique qual tipo primitivo (byte, short, int, long) é o mais apropriado para armazenar cada um dos seguintes valores, sem desperdiçar memória.
+    *A idade de uma pessoa (ex: 25)
+    *A população mundial (ex: 8.000.000.000)
+    *A distância entre duas cidades em km (ex: 500)
+    *O número de dias em um ano (ex: 365)
+    *Crie um programa e atribua a ele as  variáveis. Teste suas variações e tente executar o seu programa. Veja o que acontece. 
+     */
 
 public class TiposDados {
 
@@ -64,6 +79,12 @@ public class TiposDados {
 }
 
 Exercício 3
+
+    /**
+    *Atividade 3: Cast (Conversão de Tipos)
+    *Objetivo: Praticar a conversão entre tipos de dados.
+    *Instruções: O código a seguir está incompleto e não compila devido a erros de tipo. Adicione a conversão (casting) necessária para que o programa compile e imprima os valores corretos.
+     */
 
 public class Exercício 2 {
 
