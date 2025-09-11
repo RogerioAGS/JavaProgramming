@@ -90,3 +90,52 @@ public class Exercício 2 {
     }
     
 }
+
+Exercício 4
+   
+public class TiposDados {
+   
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int idade = 30, ano = 2000;  
+        double altura = 1.80, peso = 80.0;
+        
+        int idadesoma = (idade + ano);
+        int idadesub = (idade - ano);
+        int idademult = (idade * ano);
+        int idadedivi = (idade / ano); 
+        
+        double alturasoma = (altura + peso);
+        double alturasub = (altura - peso);
+        double alturamult = (altura * peso);
+        double alturadivi = (altura / peso); 
+        
+        double idadealturasoma = (idadesoma + alturasoma);
+        double idadealturasub = (idadesub - alturasub);
+        double idadealturamult = (idademult * alturamult);
+        double idadealturadivi = (idadedivi / alturadivi);
+
+        
+        System.out.println(idadesoma);
+        System.out.println(idadesub);
+        System.out.println(idademult);
+        System.out.println(idadedivi);
+        
+        System.out.println(idadesoma);
+        System.out.println(alturasub);
+        System.out.println(alturamult);
+        System.out.println(alturadivi);
+        
+        System.out.println(idadealturasoma);
+        System.out.println(idadealturasub);
+        System.out.println(idadealturamult);
+        System.out.println(idadealturadivi);
+
+        // Imprima o valor de cada variável
+
+    }
+    
+}
