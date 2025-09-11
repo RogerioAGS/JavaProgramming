@@ -139,3 +139,56 @@ public class TiposDados {
     }
     
 }
+
+Atividade 5   
+
+public class Atividade5 {
+    public static void main(String[] args) {
+        boolean estudanteAprovado = true;
+        boolean temAtestado = false;
+
+        boolean condicao1 = estudanteAprovado && !temAtestado;
+        System.out.println("Ele foi Aprovado E não tem atestado: " +condicao1);
+
+        boolean condicao2 = estudanteAprovado || temAtestado;
+        System.err.println("Ele foi Aprovado OU tem atestado: " + condicao2);
+
+        boolean condicao3 = !estudanteAprovado;
+        System.err.println ("Ele Não foi aprovado: "+condicao3);
+    }
+}
+
+Dasafio 1
+
+public class Desafio {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 25;
+        
+        int temp = a;
+        a = b;
+        b = temp;
+
+        System.out.println("a = " + a); // Deve imprimir 25
+        System.out.println("b = " + b); // Deve imprimir 10
+
+    }
+}
+
+Desafio 2
+
+public class Desafio2 {
+    public static void main(String[] args) {
+        int nota1 = 7;
+        int nota2 = 8;
+        int nota3 = 9;
+        
+        // Seu código para calcular a média
+        double media = 0; // Altere esta linha
+        media = ((nota1 + nota2 + nota3)/3);
+        
+        System.out.println("A média é: " + media); // Deve imprimir 8.0
+
+
+    }
+}
