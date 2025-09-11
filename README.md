@@ -43,7 +43,10 @@ public class Atividade 1 {
 }
 
 Execício 2
-    /**
+
+public class TiposDados {
+
+     /**
     *Atividade 2: Tipos de Dados e Limites
     *Objetivo: Entender a diferença de tamanho e faixa de valores entre os tipos inteiros.
     *Instruções: Identifique qual tipo primitivo (byte, short, int, long) é o mais apropriado para armazenar cada um dos seguintes valores, sem desperdiçar memória.
@@ -53,9 +56,6 @@ Execício 2
     *O número de dias em um ano (ex: 365)
     *Crie um programa e atribua a ele as  variáveis. Teste suas variações e tente executar o seu programa. Veja o que acontece. 
      */
-
-public class TiposDados {
-
     /**
      * @param args the command line arguments
      */
