@@ -12,9 +12,9 @@ public class Atividade 1 {
      *Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
      *Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
      */
-     /**
-* @param args the command line arguments
-          */
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         // TODO code application logic here
         // Declare e inicialize as seguintes variáveis:
