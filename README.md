@@ -80,13 +80,13 @@ public class TiposDados {
 
 Exercício 3
 
-    /**
-    *Atividade 3: Cast (Conversão de Tipos)
-    *Objetivo: Praticar a conversão entre tipos de dados.
-    *Instruções: O código a seguir está incompleto e não compila devido a erros de tipo. Adicione a conversão (casting) necessária para que o programa compile e imprima os valores corretos.
+     /**
+     *Atividade 3: Cast (Conversão de Tipos)
+     *Objetivo: Praticar a conversão entre tipos de dados.
+     *Instruções: O código a seguir está incompleto e não compila devido a erros de tipo. Adicione a conversão (casting) necessária para que o programa compile e imprima os valores corretos.
      */
-
-public class Exercício 2 {
+     
+     public class Exercício 2 {
 
     /**
      * @param args the command line arguments
