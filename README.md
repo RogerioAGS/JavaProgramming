@@ -80,14 +80,13 @@ public class TiposDados {
 
 Exercício 3
 
+
+     public class Exercício 2 {
      /**
      *Atividade 3: Cast (Conversão de Tipos)
      *Objetivo: Praticar a conversão entre tipos de dados.
      *Instruções: O código a seguir está incompleto e não compila devido a erros de tipo. Adicione a conversão (casting) necessária para que o programa compile e imprima os valores corretos.
      */
-     
-     public class Exercício 2 {
-
     /**
      * @param args the command line arguments
      */
@@ -114,19 +113,18 @@ Exercício 3
 
 Exercício 4
 
-         /**
-         *Atividade 4: Operações Aritméticas
-         *Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
-         *Instruções: Crie um programa que faça o seguinte:
-         *Declare duas variáveis do tipo int.
-         *Declare duas variáveis do tipo double.
-         *Calcule e imprima a soma, subtração, multiplicação e divisão de:
-         *int com int
-         *double com double
-         *int com double (observe o tipo do resultado!)
-          */
      public class TiposDados {
-
+     /**
+     *Atividade 4: Operações Aritméticas
+     *Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
+     *Instruções: Crie um programa que faça o seguinte:
+     *Declare duas variáveis do tipo int.
+     *Declare duas variáveis do tipo double.
+     *Calcule e imprima a soma, subtração, multiplicação e divisão de:
+     *int com int
+     *double com double
+     *int com double (observe o tipo do resultado!)
+     */
     /**
      * @param args the command line arguments
      */
@@ -173,6 +171,8 @@ Exercício 4
 }
 
 Atividade 5   
+
+     public class Atividade5 {
           /**
           *Atividade 5: Booleans e Lógica
           *Objetivo: Compreender o uso do tipo boolean e operadores lógicos.
@@ -182,9 +182,6 @@ Atividade 5
           *O aluno não foi aprovado.
           *Anexe o seu trabalho e envie ao professor !
           */
-
-     public class Atividade5 {
-   
     public static void main(String[] args) {
         boolean estudanteAprovado = true;
         boolean temAtestado = false;
