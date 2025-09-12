@@ -113,19 +113,19 @@ Exercício 3
 }
 
 Exercício 4
-   
+         /**
+         *Atividade 4: Operações Aritméticas
+         *Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
+         *Instruções: Crie um programa que faça o seguinte:
+         *Declare duas variáveis do tipo int.
+         *Declare duas variáveis do tipo double.
+         *Calcule e imprima a soma, subtração, multiplicação e divisão de:
+         *int com int
+         *double com double
+         *int com double (observe o tipo do resultado!)
+          */
 public class TiposDados {
-    /**
-    *Atividade 4: Operações Aritméticas
-    *Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
-    *Instruções: Crie um programa que faça o seguinte:
-    *Declare duas variáveis do tipo int.
-    *Declare duas variáveis do tipo double.
-    *Calcule e imprima a soma, subtração, multiplicação e divisão de:
-    *int com int
-    *double com double
-    *int com double (observe o tipo do resultado!)
-     */
+
     /**
      * @param args the command line arguments
      */
