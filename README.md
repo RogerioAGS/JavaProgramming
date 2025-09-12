@@ -200,6 +200,12 @@ Atividade 5
 Dasafio 1
 
 public class Desafio {
+     /**
+     *Desafios de Código
+     *Desafio 1: Invertendo Valores
+     *Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
+     *Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
+     */
     public static void main(String[] args) {
         int a = 10;
         int b = 25;
@@ -217,6 +223,11 @@ public class Desafio {
 Desafio 2
    
 public class Desafio2 {
+     /**
+     *Desafio 2: Média com Precisão
+     *Objetivo: Lidar com a precisão dos números de ponto flutuante e a conversão de tipos.
+     *Instruções: Calcule a média de 3 notas. O resultado deve ser um número decimal, mesmo que as notas sejam inteiras.
+     */
     public static void main(String[] args) {
         int nota1 = 7;
         int nota2 = 8;
