@@ -270,8 +270,8 @@ Exercício 6
          }
          
      }
-
-     Exercício Extra (7)
+     
+Exercício Extra (7)
 
      public class StringOperations {
     public static void main(String[] args) {
