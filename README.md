@@ -271,7 +271,7 @@ Exercício 6
          
      }
 
-     Exercíco Extra
+     Exercício Extra (7)
 
      public class StringOperations {
     public static void main(String[] args) {
