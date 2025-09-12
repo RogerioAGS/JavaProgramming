@@ -174,6 +174,15 @@ public class TiposDados {
 Atividade 5   
 
 public class Atividade5 {
+          /**
+          *Atividade 5: Booleans e Lógica
+          *Objetivo: Compreender o uso do tipo boolean e operadores lógicos.
+          *Instruções: Crie duas variáveis booleanas, estudanteAprovado e temAtestado. Baseado nas variáveis, crie uma expressão booleana que imprima true ou false para as seguintes condições:
+          *O aluno foi aprovado E não tem atestado.
+          *O aluno foi aprovado OU tem atestado.
+          *O aluno não foi aprovado.
+          *Anexe o seu trabalho e envie ao professor !
+          */
     public static void main(String[] args) {
         boolean estudanteAprovado = true;
         boolean temAtestado = false;
