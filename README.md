@@ -113,6 +113,7 @@ Exercício 3
 }
 
 Exercício 4
+
          /**
          *Atividade 4: Operações Aritméticas
          *Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
