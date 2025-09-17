@@ -429,3 +429,56 @@ public class Pessoa {
         System.out.println("Idade: " + pessoa.getIdade());
     }
 }
+
+Exercício 9: Validação de Dados
+Objetivo: Usar setters para validar a entrada de dados e garantir a integridade do objeto.
+Instruções:
+Modifique a classe Pessoa do exercício anterior.
+No método setIdade(), adicione uma validação: a idade só pode ser definida se for um valor positivo. Se a idade for menor que 0, imprima uma mensagem de erro no console e não altere o valor do atributo.
+Teste a validação no método main, tentando definir uma idade negativa.
+
+public class Pessoa2 {
+   // 1. Atributos privados
+    private String nome;
+    private int idade;
+
+    // Getter para Nome
+    public String getNome() {
+        return nome;
+    }
+
+    // Setter para Nome
+    public void setNome(String n) {
+        this.nome = n;
+    }
+
+    // Getter para Idade
+    public int getIdade() {
+        return idade;
+    }
+
+    // Setter para Idade
+    public void setIdade(int id) {
+        this.idade = id;
+    }
+
+    public static void main(String[] args) {
+        // Criando objeto da própria classe
+        Pessoa2 pessoa = new Pessoa2();
+
+        // Setando valores
+        pessoa.setNome("João");
+        pessoa.setIdade(2);
+
+        // Validação
+        if (pessoa.getIdade() >= 0) {
+            System.out.println("Idade definida: " + pessoa.getIdade());
+        } else {
+            System.out.println("Erro: A idade não pode ser um valor negativo.");
+        }
+
+        // Imprimindo nome
+        System.out.println("Nome: " + pessoa.getNome());
+    }
+}
+
