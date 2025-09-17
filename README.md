@@ -482,3 +482,61 @@ public class Pessoa2 {
     }
 }
 
+Exercício 3: Classe Produto
+Objetivo: Aplicar encapsulamento a uma nova classe com múltiplos atributos.
+Instruções:
+Crie uma classe Produto.
+Os atributos devem ser: nome (String), preco (double) e quantidadeEmEstoque (int). Todos devem ser private.
+Crie getters e setters para todos os atributos.
+No main, crie um objeto Produto e use os métodos para definir seus valores e imprimi-los.
+
+public class Produto {
+    // 1. Atributos privados
+    private String nome;
+    private double preco;
+    private int qtdemestoque;
+
+    // Getter para Nome
+    public String getNome() {
+        return nome;
+    }
+
+    // Setter para Nome
+    public void setNome(String n) {
+        this.nome = n;
+    }
+
+    // Getter para Preco
+    public double getPreco() {
+        return preco;
+    }
+
+    // Setter para Preco
+    public void setPreco(double pr) {
+        this.preco = pr;
+    }    
+
+    // Getter para QtdEmEstoque
+    public double getQtdEmEstoque() {
+        return qtdemestoque;
+    }
+
+    // Setter para QtdEmEstoque
+    public void setQtdEmEstoque(int qt) {
+        this.qtdemestoque = qt;
+    }
+    public static void main(String[] args) {
+        // Criando objeto da própria classe
+        Produto produto = new Produto();
+
+        // Setando valores
+        produto.setNome("João");
+        produto.setPreco(20);
+        produto.setQtdEmEstoque(8);
+
+        // Imprimindo nome
+        System.out.println("Nome: " + produto.getNome());
+        System.out.println("Preco: " + produto.getPreco());
+        System.out.println("Quantidade em Estoque: " + produto.getQtdEmEstoque());
+    }
+}
