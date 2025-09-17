@@ -378,3 +378,54 @@ public class AgeChecker {
     }
 }
 
+Exercício 8: Crie sua Primeira Classe Encapsulada
+Objetivo: Aplicar os conceitos básicos de encapsulamento.
+Instruções:
+Crie uma classe Pessoa.
+Declare os atributos nome e idade como private.
+Crie métodos public getNome(), setNome(), getIdade() e setIdade() para acessar e modificar os atributos.
+No método main, crie um objeto da classe Pessoa, defina seus valores usando os setters e imprima-os usando os getters.
+
+public class Pessoa {
+    // 1. Atributos privados
+    private String Nome; // Atributo privado
+
+    // Getter para obter o valor de Nome
+    public String getNome() {
+        return Nome;
+    }
+
+    // Setter para definir um novo valor para Nome
+    public void setNome(String n) {
+        // Poderia adicionar validações aqui, por exemplo
+        this.Nome = n;
+    }
+    private int Idade; // Atributo privado
+
+    // Getter para obter o valor de Idade
+    public int getIdade() {
+        return Idade;
+    }
+
+    // Setter para definir um novo valor para Idade
+    public void setIdade(int id) {
+        // Poderia adicionar validações aqui, por exemplo
+        this.Idade = id;
+    }
+    public static void main(String[] args) {
+        
+    
+    // 2. Getters e Setters públicos
+        Pessoa pessoa = new Pessoa();
+
+        
+        // Os setters para atribuir valores
+        pessoa.setNome("João");
+        
+        pessoa.setIdade(30);
+        
+        // Os getters para obter e imprimir os valores
+        System.out.println("Nome: " + pessoa.getNome());
+        System.out.println("Idade: " + pessoa.getIdade());
+    }
+}
