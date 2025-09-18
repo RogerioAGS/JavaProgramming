@@ -482,7 +482,7 @@ public class Pessoa2 {
     }
 }
 
-Exercício 3: Classe Produto
+Exercício 10: Classe Produto
 Objetivo: Aplicar encapsulamento a uma nova classe com múltiplos atributos.
 Instruções:
 Crie uma classe Produto.
@@ -695,4 +695,158 @@ public class App {
 		System.out.println("Novo Saldo: " + conta.getSaldo());
 		
 	}
+}
+
+Exercício 11: Atributos Calculados
+Objetivo: Usar um getter para retornar um valor calculado, em vez de um atributo diretamente armazenado.
+Instruções:
+Crie uma classe Retangulo.
+Adicione os atributos private double altura e largura.
+Crie setters para altura e largura.
+Crie um getter chamado getArea() que calcule e retorne a área do retângulo (altura * largura). Não crie um atributo para area.
+
+
+public class Retangulo {
+    //Atributos privados
+    private double altura;
+    private double largura;
+
+    //Setters
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public void setLargura(double largura) {
+        this.largura = largura;
+    }
+
+    //Getters usando para calcular a area
+    public double getArea() {
+        return altura * largura;
+    }
+
+    //Fazendo teste 
+    public static void main(String[] args) {
+        Retangulo r = new Retangulo();
+        r.setAltura(5);
+        r.setLargura(3);
+        System.out.println("Área do retângulo: " + r.getArea());
+    }
+}
+
+Desafio 3: Classificação de Alunos
+Objetivo: Combinar encapsulamento com lógica de validação complexa.
+Instruções:
+Crie uma classe Aluno.
+Os atributos private devem ser nome (String) e nota (double).
+Crie os getters e setters para ambos.
+No setNota(), adicione a seguinte validação: a nota só pode ser atribuída se estiver entre 0.0 e 10.0 (inclusive). Se for inválida, lance uma exceção (você pode usar IllegalArgumentException).
+Crie um getter adicional chamado getStatus() que, baseado na nota, retorne a String "Aprovado" (nota >= 7.0), "Em Recuperação" (nota >= 5.0) ou "Reprovado" (nota < 5.0).
+No main, crie um Aluno, defina a nota e use o método getStatus() para imprimir o resultado. Tente também definir uma nota inválida para testar a exceção.
+
+public class Aluno {
+    //Atributos privados
+    private String nome;
+    private double nota;
+
+    //Getter e Setter
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    //Getter e Setter com validação
+    public double getNota() {
+        return nota;
+    }
+
+    public void setNota(double nota) {
+        if (nota >= 0 && nota <= 10) {
+            this.nota = nota;
+        } else {
+            throw new IllegalArgumentException("Nota inválida!!! Atenção nota deve estar entre 0 e 10");
+        }
+    }
+
+    //Getter adicional para Status
+    public String getStatus() {
+        if (nota >= 7) {
+            return "Aprovado";
+        } else if (nota >= 5) {
+            return "Em Recuperação";
+        } else {
+            return "Reprovado";
+        }
+    }
+
+    //Método para teste, junto com try catch para exceção de erro
+    public static void main(String[] args) {
+        Aluno aluno = new Aluno();
+        aluno.setNome("João");
+
+        try {
+            aluno.setNota(6.5);
+            System.out.println("Aluno: " + aluno.getNome());
+            System.out.println("Nota: " + aluno.getNota());
+            System.out.println("Status: " + aluno.getStatus());
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+Desafio 4: Encapsulamento de Array
+Objetivo: Encapsular um array e fornecer métodos controlados para interagir com ele.
+Instruções:
+Crie uma classe ListaDeCompras.
+Adicione um atributo private String[] chamado itens. Inicialize-o com um tamanho fixo (ex: 5).
+Não crie um getter ou setter para o array completo.
+Crie os seguintes métodos public:
+adicionarItem(String item, int indice): Adiciona um item no índice especificado. Valide o índice para evitar ArrayIndexOutOfBoundsException.
+obterItem(int indice): Retorna o item no índice especificado, com validação de índice.
+imprimirLista(): Itera sobre o array e imprime todos os itens.
+
+public class ListaDeCompras {
+    private String[] itens = new String[5];
+
+    public void adicionarItem(String item, int indice) {
+        if (indice >= 0 && indice < itens.length) {
+            itens[indice] = item;
+        } else {
+            System.out.println("Índice inválido! Deve estar entre 0 e " + (itens.length - 1));
+        }
+    }
+
+    public String obterItem(int indice) {
+        if (indice >= 0 && indice < itens.length) {
+            return itens[indice];
+        } else {
+            return "Índice inválido!!!!";
+        }
+    }
+
+    public void imprimirLista() {
+        System.out.println("Lista de Compras: ");
+        for (int i = 0; i < itens.length; i++) {
+            System.out.println("Índice " + i + ": " + (itens[i] !=null ? itens[i] : "[vazio]"));
+        }
+    }
+}
+
+class Desafio2 {
+    public static void main(String[] args) {
+        ListaDeCompras lista = new ListaDeCompras();
+        lista.adicionarItem("Pão", 0);
+        lista.adicionarItem("Leite", 1);
+        lista.imprimirLista();
+
+        System.out.println("Item no índice 0: " + lista.obterItem(0));
+
+        lista.adicionarItem("Ovos", 10);
+    }
+
+    
 }
