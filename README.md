@@ -541,6 +541,47 @@ public class Produto {
     }
 }
 
+Exercício 11: Controle de Acesso de Escrita
+Objetivo: Criar um atributo que só pode ser lido, mas não modificado.
+Instruções:
+Crie uma classe ContaBancaria.
+Adicione um atributo saldo do tipo private double.
+Crie um getter público para o saldo, mas não crie um setter.
+Crie um método public chamado depositar(double valor) que adicione o valor ao saldo.
+No main, crie um objeto ContaBancaria, chame o método depositar() e tente modificar o saldo diretamente (verifique que o compilador irá impedir).
+
+public class ContaBancaria {
+private double saldo;
+
+public double getSaldo() {
+	return saldo;
+}
+
+public void setSaldo(double saldo) {
+	this.saldo = saldo;
+}
+
+// nossos métodos
+
+public void depositar(double valor) {
+	if(valor <= 0 ) {
+		System.out.println("Valor para depósito inválido!");
+		return;
+	}
+	
+	saldo = saldo + valor;	
+}
+
+	public static void main(String[] args) {
+	ContaBancaria conta = new ContaBancaria();
+
+	conta.setSaldo(2500);
+
+	System.out.println("Novo Saldo: " + conta.getSaldo());
+	
+	}
+}
+
 public class ContaBancaria1 {
 
     // 2. Atributo privado
@@ -697,7 +738,7 @@ public class App {
 	}
 }
 
-Exercício 11: Atributos Calculados
+Exercício 12: Atributos Calculados
 Objetivo: Usar um getter para retornar um valor calculado, em vez de um atributo diretamente armazenado.
 Instruções:
 Crie uma classe Retangulo.
