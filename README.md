@@ -540,3 +540,35 @@ public class Produto {
         System.out.println("Quantidade em Estoque: " + produto.getQtdEmEstoque());
     }
 }
+
+public class ContaBancaria1 {
+
+    // 2. Atributo privado
+    private double saldo;
+
+    // 3. Getter público (sem setter)
+    public double getSaldo() {
+        return saldo;
+    }
+
+    // 4. Método para depositar
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+        }
+    }
+
+    // Método principal para testar
+    public static void main(String[] args) {
+        ContaBancaria conta = new ContaBancaria();
+
+        // Depositando valor
+        ContaBancaria.depositar(500.0);
+        System.out.println("Saldo atual: " + conta.getSaldo());
+
+        // Tentando modificar diretamente (isso causará erro de compilação)
+        // conta.saldo = 1000.0; // ← Essa linha está comentada porque o compilador não permite acesso direto
+
+        // Descomente a linha acima para ver o erro: "saldo has private access in ContaBancaria"
+    }
+} 
