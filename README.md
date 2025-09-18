@@ -566,9 +566,15 @@ public class ContaBancaria1 {
         ContaBancaria.depositar(500.0);
         System.out.println("Saldo atual: " + conta.getSaldo());
 
-        // Tentando modificar diretamente (isso causará erro de compilação)
-        // conta.saldo = 1000.0; // ← Essa linha está comentada porque o compilador não permite acesso direto
+public static void main(String[] args) {
+public static void depositar(double valor) {	
+	Conta minhaConta = new Conta();
+	minhaConta.saldo = 200;
+	minhaConta.saldo = minhaConta.saldo + valor;
+	System.out.println("Saldo Atual");
+	System.out.println(minhaConta.saldo);
+	}
 
-        // Descomente a linha acima para ver o erro: "saldo has private access in ContaBancaria"
+}
     }
 } 
