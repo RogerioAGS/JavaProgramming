@@ -775,6 +775,244 @@ public class Retangulo {
     }
 }
 
+Atividade 13: Leitura e Compreensao de Codigo
+
+Este exercicio foca na leitura e no entendimento de um codigo pre-escrito, identificando classes, metodos e a interacao entre       objetos.
+
+Instrucoes:
+Analise o codigo abaixo. Ele representa um sistema simples de gerenciamento de uma biblioteca.
+
+Sua Tarefa:
+
+Descreva a funcao de cada classe (Livro, Biblioteca, Main).
+
+Explique o que o metodo getInfo() faz e qual classe o utiliza.
+
+Qual é o proposito do ArrayList na classe Biblioteca?
+
+import java.util.ArrayList;
+
+//A função classe atribui como string o título e autor
+public class Livro {
+    
+    String titulo;
+    String autor;
+
+    public Livro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+    }
+
+    // A função info retorna a formatação que no caso é a descrisão do título e autor do livro
+    public String getInfo() {
+        return "Título: " + this.titulo + ", Autor: " + this.autor;
+    }
+}
+
+// Classe Biblioteca.java
+
+
+class Biblioteca {
+    ArrayList<Livro> livros;
+
+    public Biblioteca() {
+        this.livros = new ArrayList<>();
+    }
+
+    public void adicionarLivro(Livro livro) {
+        this.livros.add(livro);
+    }
+
+    public void listarLivros() {
+        System.out.println("Livros na biblioteca:");
+        for (Livro livro : this.livros) {
+            System.out.println(livro.getInfo());
+        }
+    }
+}
+
+// Classe Main.java
+class Main {
+
+    //O Array nesse caso serve para armarzenar cada livro com seu título e autor
+    public static void main(String[] args) {
+        Biblioteca minhaBiblioteca = new Biblioteca();
+        Livro livro1 = new Livro("O Senhor dos Anéis", "J.R.R. Tolkien");
+        Livro livro2 = new Livro("Harry Potter e a Pedra Filosofal", "J.K. Rowling");
+
+        minhaBiblioteca.adicionarLivro(livro1);
+        minhaBiblioteca.adicionarLivro(livro2);
+        minhaBiblioteca.listarLivros();
+    }
+}
+
+Atividade 7: ArrayList vs. Array
+
+Este exercício ajuda a entender a diferença fundamental entre ArrayList e Array, especialmente no contexto de tamanho dinâmico.
+
+Instruções:
+Compare a flexibilidade de um Array de tamanho fixo com um ArrayList de tamanho dinâmico.
+
+Sua Tarefa:
+
+Crie um Array de String chamado frutasArray com um tamanho fixo de 3 elementos. Tente adicionar um quarto elemento e observe o que acontece (irá causar um erro).
+
+Crie um ArrayList de String chamado frutasList e adicione 3 elementos. Em seguida, adicione um quarto elemento sem problemas.
+
+Imprima o conteúdo e o tamanho de ambas as estruturas após as adições.
+
+Comente no código por que o ArrayList foi capaz de adicionar o quarto elemento e o Array não.
+
+public class ListaDeCompras {
+    private String[] itens = new String[5];
+
+    public void adicionarItem(String item, int indice) {
+        if (indice >= 0 && indice < itens.length) {
+            itens[indice] = item;
+        } else {
+            System.out.println("Índice inválido! Deve estar entre 0 e " + (itens.length - 1));
+        }
+    }
+
+    public String obterItem(int indice) {
+        if (indice >= 0 && indice < itens.length) {
+            return itens[indice];
+        } else {
+            return "Índice inválido!!!!";
+        }
+    }
+
+    public void imprimirLista() {
+        System.out.println("Lista de Compras: ");
+        for (int i = 0; i < itens.length; i++) {
+            System.out.println("Índice " + i + ": " + (itens[i] !=null ? itens[i] : "[vazio]"));
+        }
+    }
+}
+
+class Desafio2 {
+    public static void main(String[] args) {
+        ListaDeCompras lista = new ListaDeCompras();
+        lista.adicionarItem("Pão", 0);
+        lista.adicionarItem("Leite", 1);
+        lista.imprimirLista();
+
+        System.out.println("Item no índice 0: " + lista.obterItem(0));
+
+        lista.adicionarItem("Ovos", 10);
+    }    
+}
+
+Atividade 8: Herança com ArrayList
+
+Este exercício combina os conceitos de herança e ArrayList para criar um sistema mais complexo e funcional.
+
+Instruções:
+Aprimore o sistema de biblioteca do Exercício 1, utilizando herança.
+
+Sua Tarefa:
+
+Crie a classe Livro (do Exercício 1) com os campos titulo e autor.
+
+Crie duas subclasses de Livro: LivroFisico e Ebook.
+
+Adicione um campo numeroPaginas à classe LivroFisico e um campo formato (ex: PDF, EPUB) à classe Ebook.
+
+Na classe Biblioteca, use um ArrayList de Livro (a superclasse).
+
+No método main, crie instâncias de LivroFisico e Ebook, adicione-os à Biblioteca e chame o método listarLivros(). A saída deve mostrar que a Biblioteca pode armazenar e listar objetos de diferentes subclasses de forma polimórfica.
+
+import java.util.ArrayList;
+
+//Superclasse
+class Livro {
+    private String titulo;
+    private String autor;
+
+    public Livro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    //Esse método pode ser sobrescrito pelas subclasses
+    public String getDescricao() {
+        return "Título: " + titulo + " | Autor: " + autor;
+    }
+}
+
+//Subclasse Livro Físico
+class LivroFisico extends Livro {
+    private int numeroPaginas;
+
+    public LivroFisico(String titulo, String autor, int numeroPaginas) {
+        super(titulo, autor);
+        this.numeroPaginas = numeroPaginas;
+    }
+
+    public String getDescricao() {
+        return super.getDescricao() + " | Páginas: " + numeroPaginas;
+    }
+
+}
+
+//Subclasse Ebook
+class Ebook extends Livro {
+    private String formato;
+
+    public Ebook(String titulo, String autor, String formato) {
+        super(titulo, autor);
+        this.formato = formato;
+    }
+
+    public String getDescricao() {
+        return super.getDescricao() + " | Formato: " + formato;
+    }
+}
+
+//Classe Biblioteca
+class Biblioteca {
+    private ArrayList<Livro> livros = new ArrayList<>();
+
+    public void adicionarLivro(Livro livro) {
+        livros.add(livro);
+    }
+
+    public void listarLivros() {
+        System.out.println("\n Lista de Livros na Biblioteca: ");
+        for (Livro livro : livros) {
+            System.out.println(livro.getDescricao());
+        }
+    }
+}
+
+
+// A classe principal
+public class HerançaArrayLivro {
+    public static void main(String[] args) {
+        Biblioteca biblioteca = new Biblioteca();
+
+        //Instâncias criadas
+        LivroFisico livro1 = new LivroFisico("O Senhor dos Anéis", "J.R.R. Tolkien", 1200);
+        Ebook ebook1 = new Ebook("Clean Code", "Robert C. Martin", "PDF");
+
+        //Adicionando na biblioteca
+        biblioteca.adicionarLivro(livro1);
+        biblioteca.adicionarLivro(ebook1);
+
+        //Listando
+        biblioteca.listarLivros();
+    }
+}
+
+
 Desafio 3: Classificação de Alunos
 Objetivo: Combinar encapsulamento com lógica de validação complexa.
 Instruções:
