@@ -846,7 +846,7 @@ class Main {
     }
 }
 
-Atividade 7: ArrayList vs. Array
+Atividade 14: ArrayList vs. Array
 
 Este exercício ajuda a entender a diferença fundamental entre ArrayList e Array, especialmente no contexto de tamanho dinâmico.
 
@@ -903,7 +903,7 @@ class Desafio2 {
     }    
 }
 
-Atividade 8: Herança com ArrayList
+Atividade 14: Herança com ArrayList
 
 Este exercício combina os conceitos de herança e ArrayList para criar um sistema mais complexo e funcional.
 
@@ -1012,6 +1012,140 @@ public class HerançaArrayLivro {
     }
 }
 
+Atividade 15: Modelagem de um Sistema de Veiculos
+
+Crie um sistema para modelar diferentes tipos de veiculos.
+
+Interface: Crie uma interface chamada Veiculo com os seguintes metodos:
+
+double calcularCustoPorKm(double distancia): Retorna o custo total para uma determinada distancia.
+
+String getTipo(): Retorna o tipo de veículo (ex: "Carro", "Bicicleta").
+
+Classes: Implemente as seguintes classes que representam veiculos concretos, tornando-as imutaveis:
+
+Carro: Propriedades: consumoPorLitro e precoCombustivelPorLitro.
+
+Bicicleta: Propriedades: custoDeManutencaoPorKm.
+
+Classe de Teste: Crie uma classe Main com o metodo main. Instancie um Carro e uma Bicicleta, e chame os metodos da interface para demonstrar o calculo do custo e o tipo de cada veiculo.
+Dica: Para tornar as classes imutaveis, declare todos os campos como final, nao forneca metodos setters e inicialize os campos no construtor.
+
+/Chave para Implementar a interface 
+class Carro implements Veiculo {
+    private final double consumoPorLitro;
+    private final double precoCombustivelPorLitro;
+
+    public Carro(double consumoPorLitro, double precoCombustivelPorLitro) {
+        this.consumoPorLitro = consumoPorLitro;
+        this.precoCombustivelPorLitro = precoCombustivelPorLitro;
+    }
+//Metodo Calcular custo
+    @Override
+    public double calcularCustoPorKm(double distancia) {
+        return (distancia / consumoPorLitro) * precoCombustivelPorLitro;
+    }
+
+    @Override
+    public String getTipo() {
+        return "Carro";
+    }
+}
+
+//Metodo para teste do Veiculo
+class Bicicleta implements Veiculo {
+    private final double custoDeManutencaoPorKm;
+
+    public Bicicleta(double custoDeManutencaoPorKm) {
+        this.custoDeManutencaoPorKm = custoDeManutencaoPorKm;
+    }
+
+    @Override
+    public double calcularCustoPorKm(double distancia) {
+        return distancia * custoDeManutencaoPorKm;
+    }
+	
+Atividade 16: Sistema de Gestão de Formas Geométricas
+
+Desenvolva um sistema para gerenciar e calcular propriedades de formas geométricas.
+
+Interface: Crie uma interface chamada Forma com os métodos:
+
+double getArea(): Calcula e retorna a área da forma.
+
+double getPerimetro(): Calcula e retorna o perímetro da forma.
+
+Classes: Implemente classes imutáveis para as seguintes formas:
+
+Circulo: Propriedade: raio.
+
+Retangulo: Propriedades: largura e altura.
+
+Classe de Teste: No método main, crie uma lista de Forma e adicione instâncias de Circulo e Retangulo. Em seguida, itere sobre a lista e imprima a área e o perímetro de cada forma.
+
+Dica: Utilize a constante Math.PI para os cálculos do círculo.
+
+import java.util.ArrayList;
+import java.util.List;
+
+//Interface Veiculo 
+public interface Forma {
+    double getArea();
+    double getPerimetro();
+}
+//Chave para Implementar a Circulo
+class Circulo implements Forma {
+    private final double raio;
+
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI * raio * raio;
+    }
+
+    @Override
+    public double getPerimetro() {
+        return 2 * Math.PI * raio;
+    }
+}
+//Chave para Implementar a Retangulo
+class Retangulo implements Forma {
+    private final double largura;
+    private final double altura;
+
+    public Retangulo(double largura, double altura) {
+        this.largura = largura;
+        this.altura = altura;
+    }
+
+    @Override
+    public double getArea() {
+        return largura * altura;
+    }
+
+    @Override
+    public double getPerimetro() {
+        return 2 * (largura + altura);
+    }
+}
+
+//Metodo para teste
+class Main {
+    public static void main(String[] args) {
+        List<Forma> formas = new ArrayList<>();
+        formas.add(new Circulo(3.0));       // Raio = 3.0
+        formas.add(new Retangulo(4.0, 5.0)); // Largura = 4.0, Altura = 5.0
+
+        for (Forma forma : formas) {
+            System.out.println("----------------------------");
+            System.out.printf("Área: %.2f%n", forma.getArea());
+            System.out.printf("Perímetro: %.2f%n", forma.getPerimetro());
+        }
+    }
+}
 
 Desafio 3: Classificação de Alunos
 Objetivo: Combinar encapsulamento com lógica de validação complexa.
