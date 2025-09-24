@@ -1291,5 +1291,8 @@ public class ExemploArrayList {
     }
 }
 
+Seção 3 - Exercício 2: HashSet (A Lista de Itens Únicos)
+Objetivo: Demonstrar que uma HashSet não permite elementos duplicados e não garante ordem.
+Imagine que você está fazendo uma lista de tarefas. Você não quer a mesma tarefa duas vezes na lista.
 
 
