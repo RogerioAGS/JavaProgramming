@@ -1353,4 +1353,19 @@ public class ExemploHashMap {
     }
 }
 
+Seção 4 - Exercicio 01: Analise de URL (String Processing)
+
+Este exercicio utiliza os metodos startsWith(), contains(), indexOf() e substring() para analisar e extrair informacoes de uma URL.
+
+Enunciado
+
+Crie um programa que receba a String de uma URL e faca o seguinte:
+
+Verifique se a URL comeca com "http://" ou "https://".
+
+Verifique se a URL contem o texto ".com" (indicador de dominio comercial).
+
+Extraia e imprima o nome do dominio, ou seja, o texto entre // e a proxima /.
+
+Exemplo: Em "https://www.oracle.com/java/", o dominio eh "www.oracle.com".
 
