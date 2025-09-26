@@ -1369,3 +1369,94 @@ Extraia e imprima o nome do dominio, ou seja, o texto entre // e a proxima /.
 
 Exemplo: Em "https://www.oracle.com/java/", o dominio eh "www.oracle.com".
 
+public class AnaliseURL {
+    //Método principal (main) onde o programa começa a ser executado.
+    //String[] args permite que argumentos sejam passados pela linha de comando (não usados aqui).
+    public static void main(String[] args) {
+        //Declara e inicializa uma variável url com uma URL de exemplo.
+        String url = "https://www.oracle.com/java/documentation";
+        //Imprime a URL que será analisada e uma linha separadora para organizar a saída.
+        System.out.println("URL em análise: " + url);
+        System.out.println("----------------------------------------");
+        // 1. Verificar o protocolo (http ou https)
+        //Usa o método startsWith() para verificar se a URL começa com http:// ou https://.
+        //Retorna true ou false e armazena nas variáveis usaHttp e usaHttps.
+        boolean usaHttp = url.startsWith("http://");
+        boolean usaHttps = url.startsWith("https://");
+        //Imprime os resultados da verificação do protocolo.
+        System.out.println("Usa HTTPS? " + usaHttps);
+        System.out.println("Usa HTTP?  " + usaHttp);
+        // 2. Verificar se contém o indicador de domínio (.com)
+        //Usa o método contains() para verificar se a URL contém o texto .com, indicando que é um domínio comercial.
+        boolean isComercial = url.contains(".com");
+        //Imprime o resultado da verificação.
+        System.out.println("Contém .com? " + isComercial);
+        // 3. Extrair o domínio
+        //indexOf("://") encontra a posição onde o protocolo termina (ex: https://).
+        //O domínio começa 3 caracteres depois de ://, por isso somamos 3.
+        int inicioProtocolo = url.indexOf("://");
+        int inicioDominio = inicioProtocolo + 3;
+        //indexOf("/", inicioDominio) procura a próxima / após o início do domínio.
+        //Se não encontrar (-1), significa que a URL termina no domínio, então usamos url.length() como fim.
+        int fimDominio = url.indexOf("/", inicioDominio);
+        if (fimDominio == -1) {
+            //Usa substring() para extrair o texto entre inicioDominio e fimDominio, que é o nome do domínio.
+            fimDominio = url.length();
+        }
+        String dominio = url.substring(inicioDominio, fimDominio);
+        //Imprime o domínio extraído e uma linha separadora.
+        System.out.println("----------------------------------------");
+        System.out.println("Domínio Extraído: " + dominio);
+    }
+}
+
+Seção 4 - Exercicio 02: Parsing de Registro de Dados (String Processing)
+
+Este exercicio utiliza o metodo split() para separar dados estruturados e metodos como toUpperCase() para formatar a saida.
+
+Enunciado
+
+Voce recebeu uma string que representa um registro de um aluno, onde os dados sao separados por um ponto e virgula (;). Use o metodo split() para separar os dados e imprimi-los em um formato mais legivel.
+
+Registro: "2024001;Joao Silva;Java Programming;9.5"
+
+Requisitos:
+
+Separe o registro usando o delimitador ;.
+
+Imprima o nome do aluno em letras maiusculas (toUpperCase()).
+
+Imprima a nota formatada, garantindo que o valor seja o ultimo elemento do array.
+
+public class ParsingRegistro {
+    public static void main(String[] args) {
+        String registro = "2024001;Joao Silva;Java Programming;9.5";
+        
+        System.out.println("Registro Original: " + registro);
+        System.out.println("----------------------------------------");
+        
+        // 1. Use split() para dividir a string pelo delimitador ";"
+        String[] dados = registro.split(";");
+        
+        // Os dados sao armazenados nas seguintes posicoes:
+        // dados[0]: Matricula
+        // dados[1]: Nome do Aluno
+        // dados[2]: Curso
+        // dados[3]: Nota
+        
+        if (dados.length == 4) {
+            System.out.println("Matricula: " + dados[0]);
+            
+            // 2. Imprimir o nome em maiusculas
+            String nomeUpper = dados[1].toUpperCase();
+            System.out.println("Nome:      " + nomeUpper);
+            
+            System.out.println("Curso:     " + dados[2]);
+            
+            // 3. Imprimir a nota
+            System.out.println("Nota:      " + dados[3]);
+        } else {
+            System.out.println("Erro: O formato do registro nao corresponde ao esperado.");
+        }
+    }
+}
