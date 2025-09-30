@@ -1473,3 +1473,302 @@ public class ParsingRegistro {
         }
     }
 }
+
+Exercicio 03: Construcao e Modificacao Eficiente de Strings
+
+Este exercicio utiliza a classe StringBuilder para criar e manipular strings de forma mais eficiente do que a concatenacao tradicional com o operador +. Voce usara os metodos append() e deleteCharAt().
+
+Enunciado
+
+Crie um programa que use a classe StringBuilder para construir uma unica string de e-mail a partir de um array de destinatarios, separando-os por ponto e virgula (;).
+
+Requisitos:
+
+Crie um StringBuilder vazio ou inicializado.
+
+Use o metodo append() para adicionar cada nome do array, seguido de um ponto e virgula (;).
+
+Ao final do loop, a string tera um ponto e virgula extra. Use o metodo deleteCharAt() para remover o ultimo caractere indesejado.
+
+public class ConstrutorEmail {
+    //Método main, ponto de entrada da aplicação. O uso de String[] args permite receber argumentos via linha de comando, embora não sejam usados aqui.
+    public static void main(String[] args) {
+        //Declaração e inicialização de um array de String com os e-mails dos destinatários. É uma estrutura simples e direta para armazenar múltiplos valores.
+        String[] destinatarios = {"ana@dominio.com", "beto@dominio.com", "carla@dominio.com", "daniel@dominio.com"};
+        
+        //Imprime um cabeçalho para indicar o início da listagem. Boa prática para tornar a saída mais legível.
+        System.out.println("Lista de Destinatarios:");
+        // 1. Inicializa o StringBuilder (melhor performance para muitas modificacoes)
+        //Criação de um objeto StringBuilder. Diferente da classe String, StringBuilder é mutável e mais eficiente para operações repetidas de concatenação.
+        StringBuilder listaEmails = new StringBuilder();
+        
+        // 2. Itera sobre o array e usa append()
+        //Loop for-each que percorre o array de e-mails.
+        //append(email) adiciona o e-mail à string.
+        //append(";") adiciona o delimitador após cada e-mail.
+        //Essa abordagem evita o uso de +, que criaria múltiplos objetos String e seria menos eficiente.
+        for (String email : destinatarios) {
+            listaEmails.append(email);
+            listaEmails.append(";"); // Adiciona o delimitador
+        }
+        //Imprime a string construída até o momento, que inclui um ponto e vírgula extra no final. Isso é útil para mostrar o estado intermediário da string.
+        System.out.println("String construida (com delimitador extra): " + listaEmails.toString());
+
+        // 3. Remove o ultimo caractere (o ';' extra)
+        //Verifica se a StringBuilder tem conteúdo antes de tentar remover o último caractere.
+        //deleteCharAt() remove o ponto e vírgula extra no final, garantindo que a string final esteja corretamente formatada.
+        //Boa prática: evita erro de índice negativo em caso de array vazio.
+        if (listaEmails.length() > 0) {
+            int ultimoIndice = listaEmails.length() - 1;
+            listaEmails.deleteCharAt(ultimoIndice);
+        }
+        //Imprime uma linha divisória para separar visualmente as seções da saída.
+        System.out.println("----------------------------------------");
+        
+        // 4. Imprime o resultado final (convertendo para String)
+        //Converte o conteúdo do StringBuilder para uma String com toString().
+        //Imprime a string final, agora corretamente formatada.
+        String mensagemFinal = listaEmails.toString();
+        System.out.println("Lista de E-mails Final: " + mensagemFinal);
+    }
+}
+
+Exercicio 04: Validacao de Codigo Numerico (Regex - Parte 1)
+
+Este exercicio utiliza os metacaracteres \d (digito) e o quantificador {n} para garantir que uma string de entrada possua um formato numerico exato.
+
+Enunciado
+
+Crie um programa que use Expressoes Regulares para validar se uma string eh composta exatamente por 6 digitos numericos.
+
+Voce devera usar a API java.util.regex.Pattern e Matcher e o metodo matches() para verificar se a string inteira corresponde ao padrao.
+
+//Pattern: representa o padrão regex compilado.
+import java.util.regex.Pattern;
+//Matcher: aplica esse padrão a uma string específica.
+import java.util.regex.Matcher;
+
+//Declaração da classe principal. O nome é claro e descritivo, indicando que o foco é validar códigos numéricos.
+public class ValidacaoCodigoNumerico {
+    //Objetivo: Validar se uma string contém exatamente 6 dígitos numéricos, usando expressões regulares com os metacaracteres \d (dígito) e o quantificador {6} (quantidade exata).
+    //Método principal da aplicação. É onde o programa começa a ser executado.
+    public static void main(String[] args) {
+        
+        // Define o padrão regex: exatamente 6 dígitos numéricos
+        // \d representa um dígito, {6} indica que devem ser 6 dígitos
+        // Em Java, usamos \\ para escapar a barra invertida
+        //Define o padrão regex:
+        //\d representa um dígito (0 a 9).
+        //{6} exige exatamente 6 ocorrências.
+        //Em Java, a barra invertida precisa ser escapada com outra barra (\\), por isso \\d.
+        String regex = "\\d{6}";
+        //Compila o padrão regex em um objeto Pattern, que será usado para validar múltiplas strings.
+        Pattern padrao = Pattern.compile(regex);
+
+        //Exemplos de códigos para testar
+        //Define quatro exemplos de códigos para testar:
+        //Um válido e três inválidos por diferentes motivos: quantidade errada de dígitos ou presença de caracteres não numéricos.
+        String[] codigos = {
+            "123456",   // ✅ Válido
+            "12345",    // ❌ Inválido (5 dígitos)
+            "12345a",   // ❌ Inválido (contém letra)
+            "1234567",  // ❌ Inválido (7 dígitos)
+            "abcdef",   // ❌ Inválido (só letras)
+            "000000"    // ✅ Válido (todos zeros)
+        };
+
+        //Imprime o padrão usado e uma linha divisória para organizar visualmente a saída.
+        System.out.println("Padrão usado: " + regex);
+        System.out.println("----------------------------------------");
+
+        //Testa cada código usando a função auxiliar
+        //Chama a função auxiliar para testar cada código individualmente.
+
+        for (String codigo : codigos) {
+            testarCodigo(padrao, codigo);
+        }
+    }
+
+    //Função auxiliar para validar e imprimir o resultado
+    //Cria um Matcher que aplica o padrão à string codigo.
+    public static void testarCodigo(Pattern padrao, String codigo) {
+        Matcher matcher = padrao.matcher(codigo);
+        //Usa matches() para verificar se a string inteira corresponde ao padrão.
+        //Se apenas parte da string corresponder, o resultado será false.
+        boolean isValido = matcher.matches(); // Verifica se a string inteira corresponde ao padrão
+        //Imprime o resultado da validação de forma clara e formatada.
+        //Usa operador ternário para decidir entre "VALIDO" e "INVALIDO".
+        System.out.printf("Código '%s': %s%n", codigo, isValido ? "✅ VÁLIDO" : "❌ INVÁLIDO");
+    }
+}
+
+Exercicio 05: Busca de Ocorrencias (Regex - Parte 1)
+
+Este segundo exercicio para a Secao 4.2 foca na busca de multiplas ocorrencias dentro de um texto, utilizando os metacaracteres \w (caractere de palavra), o quantificador {n,} e o metodo find() da classe Matcher.
+
+Enunciado
+
+Dado um bloco de texto, use Expressoes Regulares para encontrar e listar todas as palavras que possuam 5 ou mais caracteres.
+
+Voce deve usar o metodo find() dentro de um loop while para iterar sobre todas as correspondencias e o metodo group() para extrair a palavra encontrada.
+
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+//Objetivo: Identificar e listar todas as palavras com 5 ou mais caracteres dentro de um texto, utilizando:
+//-\w{5,}: metacaractere para palavras com 5 ou mais caracteres.
+//-Matcher.find(): busca múltiplas ocorrências.
+//-Matcher.group(): extrai a palavra encontrada.
+public class BuscaPalavrasLongas {
+    public static void main(String[] args) {
+        // Texto de entrada para análise
+        String texto = "Este eh um exercicio sobre Java e Expressoes Regulares em programacao.";
+
+        // Expressão regular: \w{5,}
+        // \w → caractere de palavra (letras, dígitos e underscore)
+        // {5,} → 5 ou mais ocorrências consecutivas
+        String regex = "\\w{5,}";
+
+        //Compila o padrão regex
+        Pattern padrao = Pattern.compile(regex);
+
+        //Aplica o padrão ao texto
+        Matcher matcher = padrao.matcher(texto);
+
+        System.out.println("Texto em análise: " + texto);
+        System.out.println("----------------------------------------");
+        System.out.println("Palavras com 5 ou mais caracteres:");
+
+        int contador = 0;
+
+        //Loop para encontrar todas as ocorrências
+        while (matcher.find()) {
+            // matcher.group() retorna a palavra encontrada
+            String palavraEncontrada = matcher.group();
+            System.out.println(" - " + palavraEncontrada);
+            contador++;
+        }
+
+        System.out.println("----------------------------------------");
+        System.out.println("Total de palavras longas encontradas: " + contador);
+    }
+}
+
+Exercicio 06: Extracao de Componentes de Data (Regex - Parte 2)
+
+Este exercicio eh o primeiro focado na parte 2 da Secao 4.2 (Quinta-feira), utilizando o conceito crucial de Grupos de Captura (()) para extrair dados estruturados e os metodos find() e group(n).
+
+Enunciado
+
+Voce tem uma string que contem uma data no formato DD/MM/AAAA. Crie um programa que use Expressoes Regulares para extrair separadamente o dia, o mes e o ano.
+
+Requisitos:
+
+Crie um padrao com tres grupos de captura (um para cada componente da data).
+
+Use Matcher.find() para localizar a data.
+
+Use Matcher.group(1), Matcher.group(2) e Matcher.group(3) para acessar e imprimir cada parte.
+
+
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class ExtracaoData {
+    public static void main(String[] args) {
+        //Texto de entrada contendo uma data
+        String texto = "A reuniao esta marcada para 25/09/2025, anote ai.";
+
+        //Expressão regular com 3 grupos de captura:
+        // (\d{2}) → dois dígitos para o dia
+        // (\d{2}) → dois dígitos para o mês
+        // (\d{4}) → quatro dígitos para o ano
+        String regex = "(\\d{2})/(\\d{2})/(\\d{4})";
+
+        //Compila o padrão regex
+        Pattern padrao = Pattern.compile(regex);
+
+        //Aplica o padrão ao texto
+        Matcher matcher = padrao.matcher(texto);
+
+        System.out.println("Texto Original: " + texto);
+        System.out.println("Padrão: " + regex);
+        System.out.println("----------------------------------------");
+
+        //Verifica se a data foi encontrada
+        if (matcher.find()) {
+            // group(0) → corresponde à data completa
+            System.out.println("Data Completa: " + matcher.group(0));
+
+            // group(1) → primeiro grupo de captura: dia
+            String dia = matcher.group(1);
+
+            // group(2) → segundo grupo de captura: mês
+            String mes = matcher.group(2);
+
+            // group(3) → terceiro grupo de captura: ano
+            String ano = matcher.group(3);
+
+            //Imprime os componentes extraídos
+            System.out.println("Dia (Grupo 1): " + dia);
+            System.out.println("Mês (Grupo 2): " + mes);
+            System.out.println("Ano (Grupo 3): " + ano);
+        } else {
+            System.out.println("Data não encontrada no formato DD/MM/AAAA.");
+        }
+    }
+}
+
+xercicio Extra: Reverter uma String Recursivamente
+
+Este e um excelente exercicio de recursao linear para consolidar os conceitos de Caso Base e Chamada Recursiva. Ele forca o aluno a pensar em como o resultado das chamadas mais profundas eh construido e retornado.
+
+Enunciado
+
+Crie um metodo recursivo chamado reverterString que receba uma String e a retorne na ordem inversa, sem usar loops (for, while) nem a classe StringBuilder ou StringBuffer.
+
+Regras:
+
+Caso Base: Se a string for vazia ou tiver apenas um caractere, retorne a propria string.
+
+Chamada Recursiva: A string invertida eh formada pelo ultimo caractere da string original concatenado com a versao invertida do restante da string (a string menos o primeiro caractere).
+
+Exemplo: reverterString("JAVA")
+
+reverterString("A") + 'V' + 'A' + 'J'
+
+'A' + 'V' + 'A' + 'J' â†’ "AVAJ"
+
+public class ReversaoRecursiva {
+    public static void main(String[] args) {
+        //Define a string original que será invertida
+        String original = "JAVA";
+
+        //Chama o método recursivo para inverter a string
+        String invertida = reverterString(original);
+
+        //Exibe os resultados
+        System.out.println("String Original: " + original);
+        System.out.println("----------------------------------------");
+        System.out.println("String Invertida (Recursiva): " + invertida);
+    }
+
+    /**
+     * Método recursivo para inverter uma string.
+     * Regras:
+     * - Caso base: se a string for nula, vazia ou tiver um único caractere, retorna ela mesma.
+     * - Chamada recursiva: inverte o restante da string e adiciona o primeiro caractere no final.
+     */
+    public static String reverterString(String texto) {
+        //Caso base: string nula ou com 0 ou 1 caractere
+        if (texto == null || texto.length() <= 1) {
+            return texto;
+        }
+
+        //Chamada recursiva:
+        // - texto.substring(1): remove o primeiro caractere
+        // - texto.charAt(0): pega o primeiro caractere
+        // - A inversão ocorre ao retornar das chamadas recursivas
+        return reverterString(texto.substring(1)) + texto.charAt(0);
+    }
+}
