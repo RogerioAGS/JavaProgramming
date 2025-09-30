@@ -1,7 +1,9 @@
 # JavaProgramming
 Progração oracle - Java Programing
 
-Exercício 1
+Seção 1 - Atividade 1: Declaração e Inicialização
+Objetivo: Familiarizar-se com a sintaxe de declaração e inicialização de variáveis primitivas.
+Instruções: No método main abaixo, declare uma variável para cada tipo primitivo e atribua um valor a ela.
 
 
 public class Atividade 1 {
@@ -42,7 +44,16 @@ public class Atividade 1 {
     
 }
 
-Execício 2
+Seção 1 - Atividade 2: Tipos de Dados e Limites
+
+Objetivo: Entender a diferença de tamanho e faixa de valores entre os tipos inteiros.
+Instruções: Identifique qual tipo primitivo (byte, short, int, long) é o mais apropriado para armazenar cada um dos seguintes valores, sem desperdiçar memória.
+A idade de uma pessoa (ex: 25)
+A população mundial (ex: 8.000.000.000)
+A distância entre duas cidades em km (ex: 500)
+O número de dias em um ano (ex: 365)
+Crie um programa e atribua a ele as  variáveis. Teste suas variações e tente executar o seu programa. Veja o que acontece. 
+
 
 public class TiposDados {
 
@@ -78,7 +89,9 @@ public class TiposDados {
       }  
 }
 
-Exercício 3
+Seção 1 - Atividade 3: Cast (Conversão de Tipos)
+Objetivo: Praticar a conversão entre tipos de dados.
+Instruções: O código a seguir está incompleto e não compila devido a erros de tipo. Adicione a conversão (casting) necessária para que o programa compile e imprima os valores corretos.
 
 
      public class Exercício 2 {
@@ -111,7 +124,16 @@ Exercício 3
     
 }
 
-Exercício 4
+Seção 1 - Atividade 4: Operações Aritméticas
+Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
+Instruções: Crie um programa que faça o seguinte:
+Declare duas variáveis do tipo int.
+Declare duas variáveis do tipo double.
+Calcule e imprima a soma, subtração, multiplicação e divisão de:
+int com int
+double com double
+int com double (observe o tipo do resultado!)
+
 
      public class TiposDados {
      /**
@@ -170,7 +192,13 @@ Exercício 4
     
 }
 
-Atividade 5   
+Seção 1 - Atividade 5: Booleans e Lógica
+Objetivo: Compreender o uso do tipo boolean e operadores lógicos.
+Instruções: Crie duas variáveis booleanas, estudanteAprovado e temAtestado. Baseado nas variáveis, crie uma expressão booleana que imprima true ou false para as seguintes condições:
+O aluno foi aprovado E não tem atestado.
+O aluno foi aprovado OU tem atestado.
+O aluno não foi aprovado.
+  
 
      public class Atividade5 {
           /**
@@ -197,53 +225,7 @@ Atividade 5
     }
 }
 
-Dasafio 1
-
-public class Desafio {
-     /**
-     *Desafios de Código
-     *Desafio 1: Invertendo Valores
-     *Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
-     *Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
-     */
-    public static void main(String[] args) {
-        int a = 10;
-        int b = 25;
-        
-        int temp = a;
-        a = b;
-        b = temp;
-
-        System.out.println("a = " + a); // Deve imprimir 25
-        System.out.println("b = " + b); // Deve imprimir 10
-
-    }
-}
-
-Desafio 2
-   
-public class Desafio2 {
-     /**
-     *Desafio 2: Média com Precisão
-     *Objetivo: Lidar com a precisão dos números de ponto flutuante e a conversão de tipos.
-     *Instruções: Calcule a média de 3 notas. O resultado deve ser um número decimal, mesmo que as notas sejam inteiras.
-     */
-    public static void main(String[] args) {
-        int nota1 = 7;
-        int nota2 = 8;
-        int nota3 = 9;
-        
-        // Seu código para calcular a média
-        double media = 0; // Altere esta linha
-        media = ((nota1 + nota2 + nota3)/3);
-        
-        System.out.println("A média é: " + media); // Deve imprimir 8.0
-
-
-    }
-}
-
-Exercício 6
+Seção 1 - Exercício 6 - Comentar Programa
      
      /**
      * A classe 'VarTest' demonstra a declaração e exibicao de
@@ -270,8 +252,60 @@ Exercício 6
          }
          
      }
-     
-Exercício Extra (7)
+
+Seção 1 - Desafios de Código
+Desafio 1: Invertendo Valores
+Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
+Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
+
+
+public class Desafio {
+     /**
+     *Desafios de Código
+     *Desafio 1: Invertendo Valores
+     *Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
+     *Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
+     */
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 25;
+        
+        int temp = a;
+        a = b;
+        b = temp;
+
+        System.out.println("a = " + a); // Deve imprimir 25
+        System.out.println("b = " + b); // Deve imprimir 10
+
+    }
+}
+
+Seção 1 - Desafio 2: Média com Precisão
+Objetivo: Lidar com a precisão dos números de ponto flutuante e a conversão de tipos.
+Instruções: Calcule a média de 3 notas. O resultado deve ser um número decimal, mesmo que as notas sejam inteiras.
+   
+public class Desafio2 {
+     /**
+     *Desafio 2: Média com Precisão
+     *Objetivo: Lidar com a precisão dos números de ponto flutuante e a conversão de tipos.
+     *Instruções: Calcule a média de 3 notas. O resultado deve ser um número decimal, mesmo que as notas sejam inteiras.
+     */
+    public static void main(String[] args) {
+        int nota1 = 7;
+        int nota2 = 8;
+        int nota3 = 9;
+        
+        // Seu código para calcular a média
+        double media = 0; // Altere esta linha
+        media = ((nota1 + nota2 + nota3)/3);
+        
+        System.out.println("A média é: " + media); // Deve imprimir 8.0
+
+
+    }
+}
+	 
+ - Exercício Extra (7)
 
      public class StringOperations {
     public static void main(String[] args) {
@@ -378,7 +412,7 @@ public class AgeChecker {
     }
 }
 
-Exercício 8: Crie sua Primeira Classe Encapsulada
+Seção 2 - Exercício 1: Crie sua Primeira Classe Encapsulada
 Objetivo: Aplicar os conceitos básicos de encapsulamento.
 Instruções:
 Crie uma classe Pessoa.
@@ -430,7 +464,7 @@ public class Pessoa {
     }
 }
 
-Exercício 9: Validação de Dados
+Seção 2 - Exercício 2: Validação de Dados
 Objetivo: Usar setters para validar a entrada de dados e garantir a integridade do objeto.
 Instruções:
 Modifique a classe Pessoa do exercício anterior.
@@ -482,7 +516,7 @@ public class Pessoa2 {
     }
 }
 
-Exercício 10: Classe Produto
+Seção 2 - Exercício 3: Classe Produto
 Objetivo: Aplicar encapsulamento a uma nova classe com múltiplos atributos.
 Instruções:
 Crie uma classe Produto.
@@ -541,7 +575,7 @@ public class Produto {
     }
 }
 
-Exercício 11: Controle de Acesso de Escrita
+Seção 2 - Exercício 4: Controle de Acesso de Escrita
 Objetivo: Criar um atributo que só pode ser lido, mas não modificado.
 Instruções:
 Crie uma classe ContaBancaria.
@@ -738,7 +772,7 @@ public class App {
 	}
 }
 
-Exercício 12: Atributos Calculados
+Seção 2 - Exercício 5: Atributos Calculados
 Objetivo: Usar um getter para retornar um valor calculado, em vez de um atributo diretamente armazenado.
 Instruções:
 Crie uma classe Retangulo.
@@ -775,7 +809,7 @@ public class Retangulo {
     }
 }
 
-Atividade 13: Leitura e Compreensao de Codigo
+Seção 2 - Atividade 6: Leitura e Compreensao de Codigo
 
 Este exercicio foca na leitura e no entendimento de um codigo pre-escrito, identificando classes, metodos e a interacao entre       objetos.
 
@@ -846,7 +880,7 @@ class Main {
     }
 }
 
-Atividade 14: ArrayList vs. Array
+Seção 2 - Atividade 7 ArrayList vs. Array
 
 Este exercício ajuda a entender a diferença fundamental entre ArrayList e Array, especialmente no contexto de tamanho dinâmico.
 
@@ -903,7 +937,7 @@ class Desafio2 {
     }    
 }
 
-Atividade 14: Herança com ArrayList
+Seção 2 - Atividade 8: Herança com ArrayList
 
 Este exercício combina os conceitos de herança e ArrayList para criar um sistema mais complexo e funcional.
 
@@ -1012,7 +1046,7 @@ public class HerançaArrayLivro {
     }
 }
 
-Atividade 15: Modelagem de um Sistema de Veiculos
+Seção 2 - Atividade 9: Modelagem de um Sistema de Veiculos
 
 Crie um sistema para modelar diferentes tipos de veiculos.
 
@@ -1147,7 +1181,7 @@ class Main {
     }
 }
 
-Desafio 3: Classificação de Alunos
+Seção 2 - Desafio 1: Classificação de Alunos
 Objetivo: Combinar encapsulamento com lógica de validação complexa.
 Instruções:
 Crie uma classe Aluno.
@@ -1211,7 +1245,7 @@ public class Aluno {
     }
 }
 
-Desafio 4: Encapsulamento de Array
+Seção 2 - Desafio 2: Encapsulamento de Array
 Objetivo: Encapsular um array e fornecer métodos controlados para interagir com ele.
 Instruções:
 Crie uma classe ListaDeCompras.
