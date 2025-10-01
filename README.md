@@ -1806,3 +1806,181 @@ public class ReversaoRecursiva {
         return reverterString(texto.substring(1)) + texto.charAt(0);
     }
 }
+
+Seção 5 - Exercício 1: Calculadora Simples de Soma
+Crie um programa que faça o seguinte:
+Solicite ao usuário que digite o primeiro número inteiro.
+Solicite ao usuário que digite o segundo número inteiro.
+Calcule a soma dos dois números.
+Imprima o resultado da soma no console em um formato amigável.
+Foco: Uso do Scanner para ler um int e uso do System.out.println para a saída formatada.
+Codigo:
+import java.util.Scanner;
+
+// Importa a classe Scanner da biblioteca java.util para permitir a leitura de dados do usuário via teclado
+import java.util.Scanner;
+
+//O objetivo principal deste programa é realizar a soma de dois números inteiros fornecidos pelo usuário.
+
+// Define a classe principal do programa
+public class CalculadoraSomaSimples {
+
+    // Método principal que inicia a execução do programa
+    public static void main(String[] args) {
+
+        // Cria um objeto Scanner chamado 'scanner' para capturar a entrada do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        // Declaração das variáveis que armazenarão os números digitados e o resultado da soma
+        int primeiroNumero;  // Armazena o primeiro número inteiro digitado pelo usuário
+        int segundoNumero;   // Armazena o segundo número inteiro digitado pelo usuário
+        int soma;            // Armazena o resultado da soma dos dois números
+
+        // --- ENTRADA DE DADOS ---
+
+        // Solicita ao usuário que digite o primeiro número inteiro
+        System.out.print("Por favor, digite o primeiro número inteiro: ");
+        // Lê o número digitado e armazena na variável 'primeiroNumero'
+        primeiroNumero = scanner.nextInt();
+
+        // Solicita ao usuário que digite o segundo número inteiro
+        System.out.print("Agora, digite o segundo número inteiro: ");
+        // Lê o número digitado e armazena na variável 'segundoNumero'
+        segundoNumero = scanner.nextInt();
+
+        // Fecha o objeto Scanner para liberar os recursos do sistema
+        scanner.close();
+
+        // --- PROCESSAMENTO ---
+
+        // Realiza a soma dos dois números digitados
+        soma = primeiroNumero + segundoNumero;
+
+        // --- SAÍDA DE DADOS ---
+
+        // Exibe uma linha de separação para destacar o resultado
+        System.out.println("\n--- Resultado ---");
+
+        // Exibe o resultado da soma de forma clara e amigável
+        System.out.println("A soma dos números " + primeiroNumero + " e " + segundoNumero + " é: " + soma);
+    }
+}
+
+Seção 5 - Exercício 2: Conversor de Metros para Centímetros
+Crie um programa que interaja com o usuário para realizar uma conversão de unidades:
+Solicite ao usuário que digite um valor em metros (use um tipo de ponto flutuante, como double).
+Calcule o valor equivalente em centímetros (1 metro = 100 centímetros).
+Imprima a conversão no console.
+Foco: Leitura de um valor double com o Scanner e cálculo matemático básico.
+Codigo:
+import java.util.Scanner;
+
+// Importa a classe Scanner da biblioteca java.util para permitir a leitura de dados do usuário via teclado
+import java.util.Scanner;
+
+// Define a classe principal chamada ConversorUnidades
+public class ConversorUnidades {
+
+    // Método principal que inicia a execução do programa
+    public static void main(String[] args) {
+
+        // 1. Cria um objeto Scanner chamado 'scanner' para capturar a entrada do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        // 2. Declara duas variáveis do tipo double para armazenar:
+        // - o valor digitado em metros
+        // - o valor convertido em centímetros
+        double valorEmMetros;
+        double valorEmCentimetros;
+
+        // 3. Define uma constante chamada FATOR_CONVERSAO com valor 100.0
+        // Isso representa que 1 metro equivale a 100 centímetros
+        final double FATOR_CONVERSAO = 100.0;
+
+        // --- ENTRADA DE DADOS ---
+
+        // 4. Solicita ao usuário que digite um valor em metros
+        // O uso de System.out.print mantém o cursor na mesma linha
+        System.out.print("Digite o valor em metros (ex: 1,75): ");
+
+        // 5. Lê o valor digitado pelo usuário e armazena na variável 'valorEmMetros'
+        // O método nextDouble() é usado para ler números com ponto flutuante
+        valorEmMetros = scanner.nextDouble();
+
+        // 6. Fecha o objeto Scanner para liberar os recursos do sistema
+        scanner.close();
+
+        // --- PROCESSAMENTO ---
+
+        // 7. Calcula o valor equivalente em centímetros
+        // Multiplica o valor em metros pelo fator de conversão
+        valorEmCentimetros = valorEmMetros * FATOR_CONVERSAO;
+
+        // --- SAÍDA DE DADOS ---
+
+        // 8. Exibe uma linha de separação para destacar o resultado
+        System.out.println("\n--- Conversão ---");
+
+        // 9. Imprime o resultado da conversão de forma clara e amigável
+        // Exibe tanto o valor original em metros quanto o resultado em centímetros
+        System.out.println(valorEmMetros + " metros equivalem a " + valorEmCentimetros + " centímetros.");
+    }
+}
+
+Exercício 3: Mensagem de Perfil
+Crie um programa que colete três informações distintas do usuário e as combine em uma única mensagem de saída:
+Peça o nome completo (String).
+Peça a cidade onde mora (String).
+Peça o ano de nascimento (int).
+Exiba todas as informações coletadas em uma única linha.
+Foco: Combinação das funções nextLine() e nextInt() do Scanner e concatenação de Strings na saída
+Codigo:
+import java.util.Scanner;
+
+// Importa a classe Scanner para permitir a leitura de dados digitados pelo usuário
+import java.util.Scanner;
+
+// Define a classe principal do programa
+public class MensagemDePerfil {
+
+    // Método principal que inicia a execução do programa
+    public static void main(String[] args) {
+
+        // 1. Cria o objeto Scanner para ler a entrada do usuário via teclado
+        Scanner scanner = new Scanner(System.in);
+
+        // 2. Declara as variáveis que armazenarão os dados coletados
+        String nomeCompleto;   // Armazena o nome completo do usuário
+        String cidade;         // Armazena a cidade onde o usuário mora
+        int anoNascimento;     // Armazena o ano de nascimento do usuário
+
+        // --- ENTRADA (INPUT) ---
+
+        // 3. Solicita o nome completo e armazena usando nextLine()
+        // nextLine() é ideal para capturar frases com espaços
+        System.out.print("Digite seu nome completo: ");
+        nomeCompleto = scanner.nextLine();
+
+        // 4. Solicita a cidade e armazena usando nextLine()
+        System.out.print("Em qual cidade você mora? ");
+        cidade = scanner.nextLine();
+
+        // 5. Solicita o ano de nascimento e armazena usando nextInt()
+        // nextInt() lê apenas o número inteiro
+        System.out.print("Qual seu ano de nascimento? ");
+        anoNascimento = scanner.nextInt();
+
+        // 6. Fecha o Scanner para liberar os recursos do sistema
+        scanner.close();
+
+        // --- SAÍDA (OUTPUT) ---
+
+        // 7. Exibe uma linha de separação para destacar o resultado
+        System.out.println("---");
+
+        // 8. Exibe todas as informações coletadas em uma única linha
+        // Usa concatenação de Strings para montar a mensagem final
+        System.out.println("Perfil criado: " + nomeCompleto + ", de " + cidade + ", nascido(a) em " + anoNascimento + ".");
+    }
+}
+
