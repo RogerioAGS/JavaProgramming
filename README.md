@@ -2059,6 +2059,55 @@ public class InversorDePalavras {
     }
 }
 
+Seção 5 - Exercício 1: Leitura Simples de Arquivo de Texto (Character Streams)
+Crie um programa que leia um arquivo de texto existente e imprima seu conteúdo no console.
+Crie manualmente um arquivo chamado entrada.txt na raiz do seu projeto e adicione algumas linhas de texto nele.
+No seu código Java, use a classe FileReader (Stream de Caractere) para abrir o arquivo.
+Implemente um loop para ler e imprimir cada caractere no console.
+Use o bloco try-catch para tratar a exceção IOException.
+Foco: Uso básico de FileReader e tratamento de exceções de I/O.
+Codigo:
+Exercício 1 de Fundamentos de I/O foca na leitura de arquivos usando Character Streams (FileReader) e no tratamento essencial de erros com try-catch.
+Lembre-se de criar o arquivo entrada.txt na mesma pasta do seu projeto ou especificar o caminho completo para o arquivo.
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class EscritaDadosBrutos {
+
+    public static void main(String[] args) {
+
+        // 1. Cria um array de bytes com valores numéricos
+        // Cada número representa um byte que será gravado no arquivo
+        byte[] dados = {10, 20, 30, 40, 50, 60, 70};
+
+        // Nome do arquivo de saída
+        String nomeArquivo = "dados_brutos.dat";
+
+        // Mensagem inicial indicando o início da escrita
+        System.out.println("Iniciando a escrita de " + dados.length + " bytes no arquivo: " + nomeArquivo);
+
+        // 2. Usa try-with-resources para garantir o fechamento automático do stream
+        // FileOutputStream é usado para gravar dados binários (byte stream)
+        try (FileOutputStream outputStream = new FileOutputStream(nomeArquivo)) {
+
+            // 3. Grava o array de bytes no arquivo usando o método write()
+            outputStream.write(dados);
+
+            // Mensagem de sucesso
+            System.out.println("Escrita concluída com sucesso.");
+
+        } catch (IOException e) {
+            // 4. Trata exceções de I/O (como erro de permissão ou caminho inválido)
+            System.err.println("\n--- ERRO de I/O ---");
+            System.err.println("Ocorreu um erro ao escrever no arquivo: " + e.getMessage());
+        }
+
+        // Observação: O arquivo gerado contém dados binários.
+        // Se aberto em um editor de texto, os bytes podem aparecer como símbolos não legíveis.
+    }
+}
+
 Seção 5 - Desafio 2: Cálculo de IMC com Controle de Ponto Flutuante
 Crie um programa completo para calcular o Índice de Massa Corporal (IMC) de uma pessoa, tratando os dados com precisão:
 Solicite o peso da pessoa em quilogramas (double).
@@ -2117,3 +2166,70 @@ public class CalculadoraIMC {
         System.out.printf("Seu IMC calculado é: %.2f%n", imc);
     }
 }
+
+Seção 5 - Exercício 2: Escrita de Dados Brutos em Arquivo (Byte Streams)
+Crie um programa que grave dados binários (bytes) em um novo arquivo.
+Crie um array de bytes com alguns números (ex: byte[] dados = {10, 20, 30, 40, 50};).
+Use a classe FileOutputStream (Stream de Byte) para criar e abrir um arquivo chamado dados_brutos.dat.
+Use o método write() do stream para gravar o array de bytes no arquivo.
+Certifique-se de fechar o stream após a escrita (idealmente usando try-with-resources).
+Foco: Uso de FileOutputStream para I/O binário e garantia de fechamento de recursos.
+Exercício 2 é crucial para entender a diferença entre streams de caractere (para texto) e streams de byte (para dados brutos/binários). Usaremos o FileOutputStream e a sintaxe try-with-resources para garantir que o arquivo seja fechado.
+Aqui está o código Java para escrever dados brutos em um arquivo:
+Codigo:
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+// Importa as classes necessárias para leitura de arquivo e tratamento de exceções
+import java.io.FileReader;
+import java.io.IOException;
+
+// Define a classe principal do programa
+public class LeituraArquivoSimples {
+
+    // Método principal que inicia a execução do programa
+    public static void main(String[] args) {
+
+        // Nome do arquivo a ser lido (deve estar na raiz do projeto)
+        String nomeArquivo = "entrada.txt";
+
+        // Declara o objeto FileReader fora do try para poder acessá-lo no finally
+        FileReader leitor = null;
+
+        // Mensagem inicial indicando o início da leitura
+        System.out.println("Iniciando a leitura do arquivo: " + nomeArquivo + "\n");
+
+        try {
+            // 1. Instancia o FileReader para abrir o arquivo em modo leitura
+            leitor = new FileReader(nomeArquivo);
+
+            int caractereLido; // Variável para armazenar o código ASCII do caractere lido
+
+            // 2. Loop para ler caractere por caractere até o fim do arquivo
+            // O método read() retorna -1 quando não há mais caracteres para ler
+            while ((caractereLido = leitor.read()) != -1) {
+                // Converte o código ASCII para caractere e imprime no console
+                System.out.print((char) caractereLido);
+            }
+
+        } catch (IOException e) {
+            // 3. Trata qualquer exceção de I/O (como arquivo não encontrado ou erro de leitura)
+            System.err.println("\n--- ERRO de I/O ---");
+            System.err.println("Ocorreu um erro ao ler o arquivo: " + e.getMessage());
+
+        } finally {
+            // 4. Garante que o recurso será fechado mesmo que ocorra uma exceção
+            try {
+                if (leitor != null) {
+                    leitor.close(); // Fecha o FileReader
+                    System.out.println("\n\nLeitor de arquivo fechado com sucesso.");
+                }
+            } catch (IOException e) {
+                // Trata exceção caso ocorra erro ao fechar o arquivo
+                System.err.println("Erro ao tentar fechar o arquivo: " + e.getMessage());
+            }
+        }
+    }
+}
+
+
