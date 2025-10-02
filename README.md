@@ -2406,3 +2406,136 @@ public class SerializacaoEDesserializacao {
         System.out.println("Código (Transient, PERDIDO): " + restaurado.getCodigo());
     }
 }
+
+
+
+Seção 5 - Exercício 1: Organização com Packages
+Crie uma estrutura de packages (pacotes) para uma aplicação de gerenciamento de estoque, focada em organização e separação de responsabilidades.
+Crie um package principal chamado br.com.estoque.
+Dentro dele, crie os seguintes sub-packages:
+br.com.estoque.modelo: Crie a classe Produto aqui.
+br.com.estoque.servico: Crie a classe ServicoEstoque aqui.
+br.com.estoque.app: Crie a classe Main (com o método main) aqui.
+Na classe Main, importe e use a classe Produto e a classe ServicoEstoque.
+No console, imprima a estrutura completa dos packages para demonstrar a organização.
+Foco: Entendimento e aplicação prática do conceito de packages e das declarações import.
+
+# Este exercício é excelente para praticar a organização de código e a utilização de packages (pacotes), que é um conceito fundamental em Java.
+Vou gerar as três classes (Produto, ServicoEstoque e Main) em uma única estrutura de código para que você possa ver como elas interagem.
+1. Estrutura da Aplicação e Arquivos
+Para que este código funcione corretamente, você deve replicar a seguinte estrutura de pastas:
+br/
+└── com/
+    └── estoque/
+        ├── app/
+        │   └── Main.java       <- Classe principal
+        ├── modelo/
+        │   └── Produto.java    <- Classe de dados
+        └── servico/
+            └── ServicoEstoque.java <- Classe de lógica
+
+package br.com.estoque.modelo; // Define o pacote onde esta classe está localizada
+
+/**
+ * Classe de Modelo (Dados): Representa um item no estoque.
+ * Fica no package br.com.estoque.modelo.
+ */
+public class Produto {
+    // Atributos privados para encapsulamento
+    private String nome;         // Nome do produto
+    private int quantidade;      // Quantidade disponível no estoque
+
+    // Construtor para inicializar o produto com nome e quantidade
+    public Produto(String nome, int quantidade) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+    }
+
+    // Método getter para acessar o nome do produto
+    public String getNome() {
+        return nome;
+    }
+
+    // Método getter para acessar a quantidade atual do produto
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    // Método para adicionar unidades ao estoque
+    public void adicionarEstoque(int valor) {
+        this.quantidade += valor; // Soma o valor recebido à quantidade atual
+    }
+
+    // Método sobrescrito para representar o produto como uma string
+    @Override
+    public String toString() {
+        return nome + " (Qtd: " + quantidade + ")"; // Ex: "Livro Java Avançado (Qtd: 10)"
+    }
+}
+
+package br.com.estoque.servico; // Define o pacote onde esta classe está localizada
+
+// Importa a classe Produto do pacote modelo para poder usá-la aqui
+import br.com.estoque.modelo.Produto;
+
+/**
+ * Classe de Serviço (Lógica): Contém regras de negócio.
+ * Fica no package br.com.estoque.servico.
+ */
+public class ServicoEstoque {
+
+    /**
+     * Método que simula a adição de produtos ao estoque.
+     * Aplica uma regra simples: só adiciona se o valor for positivo.
+     */
+    public void adicionarProduto(Produto p, int valor) {
+        if (valor > 0) {
+            // Chama o método da classe Produto para adicionar ao estoque
+            p.adicionarEstoque(valor);
+            // Imprime um log informando a operação realizada
+            System.out.println("LOG: Adicionado " + valor + " unidades de " + p.getNome() + ".");
+        } else {
+            // Caso o valor seja inválido, imprime uma mensagem de erro
+            System.out.println("LOG: Valor de adição deve ser positivo.");
+        }
+    }
+}
+
+package br.com.estoque.app; // Define o pacote onde esta classe está localizada
+
+// Importa as classes necessárias de outros pacotes
+import br.com.estoque.modelo.Produto;
+import br.com.estoque.servico.ServicoEstoque;
+
+/**
+ * Classe Principal da Aplicação (App): Ponto de entrada (método main).
+ * Fica no package br.com.estoque.app.
+ */
+public class Main {
+
+    // Método principal que inicia a aplicação
+    public static void main(String[] args) {
+
+        // Imprime a estrutura de pacotes para demonstrar organização
+        System.out.println("--- ESTRUTURA DE PACKAGES ---");
+        System.out.println("Aplicação Principal: br.com.estoque.app");
+        System.out.println("Modelo de Dados:     br.com.estoque.modelo");
+        System.out.println("Lógica de Negócio:   br.com.estoque.servico");
+        System.out.println("-----------------------------\n");
+
+        // Cria uma instância de Produto com nome e quantidade inicial
+        Produto livro = new Produto("Livro Java Avançado", 10);
+
+        // Cria uma instância do serviço de estoque
+        ServicoEstoque servico = new ServicoEstoque();
+
+        // Mostra o estado do produto antes da operação
+        System.out.println("Produto antes da operação: " + livro);
+
+        // Usa o serviço para adicionar unidades ao estoque do produto
+        servico.adicionarProduto(livro, 5);
+
+        // Mostra o estado do produto após a operação
+        System.out.println("Produto após a operação:  " + livro);
+    }
+}
