@@ -2634,3 +2634,100 @@ public class Main {
         System.out.println("Produto após a operação:  " + livro);
     }
 }
+
+Seção 5 - Exercício 2: Simulação de Configuração de Banco de Dados
+Crie classes para simular a camada de Acesso a Dados (DAL) de uma aplicação e configure as informações de conexão.
+Crie um package chamado infra.data.
+Dentro dele, crie a classe DatabaseConfig com três campos public static final String:
+DB_URL (valor: "jdbc:mysql://localhost:3306/estoque_db")
+DB_USER (valor: "usuario_app")
+DB_PASSWORD (valor: "senha123")
+Crie a classe ProdutoDAO (Data Access Object) no mesmo pacote.
+No método principal (main), tente imprimir as três constantes de configuração acessando-as diretamente da classe DatabaseConfig. Explique por que usar static final é comum para configurações.
+Foco: Simulação da camada de dados e uso de variáveis estáticas para constantes de configuração.
+
+O Exercício 2 simula a criação da camada de dados e foca no uso de constantes public static final para gerenciar configurações de backend, como credenciais de banco de dados.
+Vou criar as classes DatabaseConfig e ProdutoDAO dentro do package infra.data, e o programa principal para demonstrar o acesso a essas constantes.
+1. Estrutura da Aplicação
+infra/
+└── data/
+    ├── DatabaseConfig.java
+    └── ProdutoDAO.java
+
+package infra.data; // Define o pacote onde esta classe está localizada
+
+/**
+ * Classe que armazena as configurações de conexão com o banco de dados.
+ * O uso de 'public static final' garante que esses valores:
+ * - Sejam constantes (final): não podem ser alterados.
+ * - Pertençam à classe (static): acessíveis sem instanciar.
+ * - Sejam visíveis globalmente (public): acessíveis de qualquer lugar.
+ */
+public class DatabaseConfig {
+
+    // URL de conexão JDBC simulada
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/estoque_db";
+
+    // Usuário do banco de dados
+    public static final String DB_USER = "usuario_app";
+
+    // Senha do banco de dados
+    public static final String DB_PASSWORD = "senha123";
+
+    // Construtor privado para impedir instanciamento
+    private DatabaseConfig() {
+        // Esta classe serve apenas para armazenar constantes
+    }
+}
+package infra.data; // Define o pacote onde esta classe está localizada
+
+/**
+ * Classe ProdutoDAO (Data Access Object).
+ * Responsável por simular operações de acesso ao banco de dados
+ * utilizando as configurações definidas em DatabaseConfig.
+ */
+public class ProdutoDAO {
+
+    // Construtor que exibe uma mensagem ao ser chamado
+    public ProdutoDAO() {
+        System.out.println("ProdutoDAO inicializado.");
+    }
+
+    /**
+     * Método que simula a abertura de uma conexão com o banco.
+     * Utiliza as constantes da classe DatabaseConfig.
+     */
+    public void conectar() {
+        System.out.println("\nTentando conectar ao banco de dados...");
+        System.out.println("URL: " + DatabaseConfig.DB_URL);       // Acessa a URL do banco
+        System.out.println("Usuário: " + DatabaseConfig.DB_USER); // Acessa o usuário
+        System.out.println("Senha: " + DatabaseConfig.DB_PASSWORD); // Acessa a senha
+        System.out.println("Conexão simulada com sucesso!");
+    }
+}
+
+import infra.data.DatabaseConfig; // Importa a classe de configuração
+import infra.data.ProdutoDAO;     // Importa o DAO
+
+/**
+ * Classe principal que demonstra o uso das constantes de configuração
+ * e a simulação de uma conexão com o banco de dados.
+ */
+public class AplicacaoConfig {
+
+    public static void main(String[] args) {
+
+        System.out.println("--- DEMONSTRAÇÃO DE ACESSO ÀS CONSTANTES ---");
+
+        // Acessando as constantes diretamente da classe DatabaseConfig
+        System.out.println("1. Acessando DB_URL: " + DatabaseConfig.DB_URL);
+        System.out.println("2. Acessando DB_USER: " + DatabaseConfig.DB_USER);
+        System.out.println("3. Acessando DB_PASSWORD: " + DatabaseConfig.DB_PASSWORD);
+
+        System.out.println("\n-------------------------------------------");
+
+        // Cria uma instância do DAO e simula a conexão
+        ProdutoDAO dao = new ProdutoDAO();
+        dao.conectar();
+    }
+}
