@@ -1,51 +1,38 @@
-public class Produto {
-    // 1. Atributos privados
-    private String nome;
-    private double preco;
-    private int qtdemestoque;
+package br.com.estoque.modelo; // Define o pacote onde esta classe está localizada
 
-    // Getter para Nome
+/**
+ * Classe de Modelo (Dados): Representa um item no estoque.
+ * Fica no package br.com.estoque.modelo.
+ */
+public class Produto {
+    // Atributos privados para encapsulamento
+    private String nome;         // Nome do produto
+    private int quantidade;      // Quantidade disponível no estoque
+
+    // Construtor para inicializar o produto com nome e quantidade
+    public Produto(String nome, int quantidade) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+    }
+
+    // Método getter para acessar o nome do produto
     public String getNome() {
         return nome;
     }
 
-    // Setter para Nome
-    public void setNome(String n) {
-        this.nome = n;
+    // Método getter para acessar a quantidade atual do produto
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    // Getter para Preco
-    public double getPreco() {
-        return preco;
+    // Método para adicionar unidades ao estoque
+    public void adicionarEstoque(int valor) {
+        this.quantidade += valor; // Soma o valor recebido à quantidade atual
     }
 
-    // Setter para Preco
-    public void setPreco(double pr) {
-        this.preco = pr;
-    }    
-
-    // Getter para QtdEmEstoque
-    public double getQtdEmEstoque() {
-        return qtdemestoque;
-    }
-
-    // Setter para QtdEmEstoque
-    public void setQtdEmEstoque(int qt) {
-        this.qtdemestoque = qt;
-    }
-    public static void main(String[] args) {
-        // Criando objeto da própria classe
-        Produto produto = new Produto();
-
-        // Setando valores
-        produto.setNome("João");
-        produto.setPreco(20);
-        produto.setQtdEmEstoque(8);
-
-        // Imprimindo nome
-        System.out.println("Nome: " + produto.getNome());
-        System.out.println("Preco: " + produto.getPreco());
-        System.out.println("Quantidade em Estoque: " + produto.getQtdEmEstoque());
+    // Método sobrescrito para representar o produto como uma string
+    @Override
+    public String toString() {
+        return nome + " (Qtd: " + quantidade + ")"; // Ex: "Livro Java Avançado (Qtd: 10)"
     }
 }
-
