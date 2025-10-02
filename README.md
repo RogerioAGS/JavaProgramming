@@ -2232,7 +2232,7 @@ public class LeituraArquivoSimples {
     }
 }
 
-Swção 5 - Desafio 1: Processamento de Arquivo de Texto com Buffering e Linhas
+Seção 5 - Desafio 1: Processamento de Arquivo de Texto com Buffering e Linhas
 Crie um programa que utilize streams com buffer para leitura eficiente e reescreva um arquivo com numeração de linhas.
 Use o arquivo entrada.txt do Exercício 1.
 Use BufferedReader para a leitura eficiente e BufferedWriter para a escrita.
@@ -2312,3 +2312,97 @@ public class NumeradorDeLinhas {
     }
 }
 
+Seção 5 - Desafio 2: Serialização e Desserialização Completa de Objeto
+Implemente a lógica completa de salvar e carregar o objeto criado no Exercício 3.
+Usando a classe Produto (serializável), crie uma instância de um produto (ex: nome="Celular", preco=1500.0, codigo=101).
+Serialização:
+Use FileOutputStream e ObjectOutputStream para salvar o objeto em um arquivo chamado produto.ser.
+Desserialização:
+Use FileInputStream e ObjectInputStream para ler o arquivo produto.ser.
+Converta o objeto lido de volta para o tipo Produto (faça o casting).
+Imprima todos os campos do objeto original e do objeto desserializado, comprovando que o campo codigo (marcado como transient) não foi mantido.
+Foco: Fluxo completo de Serialização/Desserialização, casting e confirmação do efeito de transient.
+Desafio 2 é o teste final para entender o fluxo de Serialização (salvar o objeto) e Desserialização (restaurar o objeto), além de comprovar o comportamento da palavra-chave transient.
+Você precisará da classe Produto que criamos no Exercício 3 (com codigo marcado como transient) para rodar este código.
+Código Java: Serialização e Desserialização
+Codigo:
+import java.io.*;
+
+import java.io.*;
+
+public class SerializacaoEDesserializacao {
+
+    // Nome do arquivo onde o objeto será salvo
+    private static final String ARQUIVO_SER = "produto.ser";
+
+    public static void main(String[] args) {
+
+        // 1. Criação do Objeto Original
+        // O campo 'codigo' é marcado como transient e não será salvo na serialização
+        Produto original = new Produto("Celular S10", 1500.0, 101);
+
+        System.out.println("--- 1. OBJETO ORIGINAL ---");
+        System.out.println("Objeto Original: " + original);
+        System.out.println("Código Original (transient): " + original.getCodigo());
+
+        // ----------------------------------------
+        // A. SERIALIZAÇÃO (Salvando o Objeto)
+        // ----------------------------------------
+        System.out.println("\n--- 2. SERIALIZANDO Objeto para o arquivo: " + ARQUIVO_SER);
+
+        try (
+            // Cria um fluxo de saída para o arquivo
+            FileOutputStream fileOut = new FileOutputStream(ARQUIVO_SER);
+            // Cria um fluxo de saída de objetos para serializar o objeto Produto
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut)
+        ) {
+            // Escreve o objeto no arquivo
+            objOut.writeObject(original);
+            System.out.println("Serialização concluída. Estado salvo.");
+
+        } catch (IOException i) {
+            // Trata erro de escrita no arquivo
+            i.printStackTrace();
+            return;
+        }
+
+        // ----------------------------------------
+        // B. DESSERIALIZAÇÃO (Carregando o Objeto)
+        // ----------------------------------------
+        System.out.println("\n--- 3. DESSERIALIZANDO Objeto do arquivo: " + ARQUIVO_SER);
+        Produto restaurado = null;
+
+        try (
+            // Cria um fluxo de entrada para ler o arquivo
+            FileInputStream fileIn = new FileInputStream(ARQUIVO_SER);
+            // Cria um fluxo de entrada de objetos para desserializar o objeto Produto
+            ObjectInputStream objIn = new ObjectInputStream(fileIn)
+        ) {
+            // Lê o objeto do arquivo e faz o casting para Produto
+            restaurado = (Produto) objIn.readObject();
+            System.out.println("Desserialização concluída. Objeto restaurado.");
+
+        } catch (IOException i) {
+            // Trata erro de leitura do arquivo
+            i.printStackTrace();
+            return;
+        } catch (ClassNotFoundException c) {
+            // Trata erro caso a classe Produto não seja encontrada
+            System.out.println("Classe Produto não encontrada.");
+            c.printStackTrace();
+            return;
+        }
+
+        // ----------------------------------------
+        // 4. COMPROVAÇÃO DO EFEITO TRANSIENT
+        // ----------------------------------------
+        System.out.println("\n--- 4. COMPROVAÇÃO ---");
+        System.out.println("Objeto Restaurado: " + restaurado);
+
+        // Exibe os campos do objeto restaurado
+        System.out.println("\nEfeito Transient:");
+        System.out.println("Nome (Salvo): " + restaurado.getNome());
+        System.out.println("Preço (Salvo): " + restaurado.getPreco());
+        System.out.println("Código (Transient, PERDIDO): " + restaurado.getCodigo());
+    }
+}
