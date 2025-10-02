@@ -2232,4 +2232,83 @@ public class LeituraArquivoSimples {
     }
 }
 
+Swção 5 - Desafio 1: Processamento de Arquivo de Texto com Buffering e Linhas
+Crie um programa que utilize streams com buffer para leitura eficiente e reescreva um arquivo com numeração de linhas.
+Use o arquivo entrada.txt do Exercício 1.
+Use BufferedReader para a leitura eficiente e BufferedWriter para a escrita.
+Leia o arquivo original linha por linha usando o método readLine().
+Grave o conteúdo em um novo arquivo chamado saida_numerada.txt, prefixando cada linha com o seu número (ex: "1: Conteúdo da primeira linha").
+Utilize a sintaxe try-with-resources para garantir o fechamento automático de ambos os streams.
+Foco: Eficiência com streams buffered, leitura de linhas (readLine) e uso de try-with-resources.
+Desafio 1 é um excelente passo para a eficiência em I/O, utilizando streams com buffer e a sintaxe moderna try-with-resources para lidar com múltiplos arquivos de forma segura e limpa.
+Aqui está o código Java para o Desafio 1: Processamento de Arquivo de Texto com Buffering e Linhas.
+# Conteúdo do entrada.txt (Exemplo, reutilizando o arquivo):
+Primeira linha de texto.
+Java I/O é fundamental.
+Fim do arquivo.
+Código Java (com BufferedReader, BufferedWriter e try-with-resources)
+
+// Importa as classes necessárias para leitura e escrita de arquivos com buffer
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+// Define a classe principal do programa
+public class NumeradorDeLinhas {
+
+    // Método principal que inicia a execução do programa
+    public static void main(String[] args) {
+
+        // Define os nomes dos arquivos de entrada e saída
+        String arquivoEntrada = "entrada.txt";           // Arquivo original com o conteúdo
+        String arquivoSaida = "saida_numerada.txt";      // Arquivo que será gerado com numeração
+
+        // Mensagens informativas no console
+        System.out.println("Processando o arquivo: " + arquivoEntrada);
+        System.out.println("Gerando arquivo de saída: " + arquivoSaida + "\n");
+
+        // Inicializa o contador de linhas
+        int contadorLinhas = 1;
+
+        // Usa try-with-resources para garantir o fechamento automático dos streams
+        try (
+            // Cria um BufferedReader para leitura eficiente linha por linha
+            BufferedReader leitor = new BufferedReader(new FileReader(arquivoEntrada));
+
+            // Cria um BufferedWriter para escrita eficiente no novo arquivo
+            BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivoSaida))
+        ) {
+            String linha; // Variável para armazenar cada linha lida
+
+            // Lê o arquivo linha por linha até que readLine() retorne null (fim do arquivo)
+            while ((linha = leitor.readLine()) != null) {
+
+                // Constrói a nova linha com prefixo numérico
+                String novaLinha = contadorLinhas + ": " + linha;
+
+                // Escreve a nova linha no arquivo de saída
+                escritor.write(novaLinha);
+
+                // Adiciona uma quebra de linha após cada escrita
+                escritor.newLine();
+
+                // Exibe no console a linha processada
+                System.out.println("Linha processada: " + novaLinha);
+
+                // Incrementa o contador para a próxima linha
+                contadorLinhas++;
+            }
+
+        } catch (IOException e) {
+            // Trata qualquer erro de entrada/saída (ex: arquivo não encontrado)
+            System.err.println("\n--- ERRO de I/O ---");
+            System.err.println("Ocorreu um erro no processamento: " + e.getMessage());
+        }
+
+        // Mensagem final com o total de linhas processadas
+        System.out.println("\nProcessamento finalizado. Total de " + (contadorLinhas - 1) + " linhas gravadas.");
+    }
+}
 
