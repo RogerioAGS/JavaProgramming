@@ -2407,9 +2407,104 @@ public class SerializacaoEDesserializacao {
     }
 }
 
+# Seção 5 - Desafio 3: Implementando o Padrão Decorator com Filtros de I/O
+Crie um filter stream customizado para adicionar uma funcionalidade a um stream existente.
+Crie uma classe UpperCaseWriter que herde de FilterWriter (ou use a interface Writer para um desafio ainda maior).
+O objetivo dessa nova classe é que, ao chamar o método write(String str), ela converta a string para maiúsculas antes de passá-la para o writer subjacente.
+Crie um stream de saída (output stream) usando:
+ FileWriter→BufferedWriter→UpperCaseWriter
+ (A ordem é: new BufferedWriter(new UpperCaseWriter(new FileWriter("maiusculo.txt")))).
+Escreva uma frase em letras minúsculas e verifique o arquivo maiusculo.txt para confirmar que todo o texto foi gravado em maiúsculas.
+Foco: Entendimento do Padrão Decorator em Java I/O (streams em cadeia), e a criação de um stream customizado.
+O Desafio 3 aborda o Padrão Decorator em Java I/O, onde um stream é envolvido por outro para adicionar funcionalidades, o que é a base de classes como BufferedReader e BufferedWriter.
+Aqui está o código completo, incluindo a classe UpperCaseWriter customizada e o programa principal que demonstra seu uso.
+1. Classe Customizada: UpperCaseWriter
+Primeiro, criamos o nosso filter stream customizado que herda de FilterWriter e modifica o comportamento do método write(String).
+2. Programa Principal: Demonstrando o Decorator
+Agora, criamos a classe principal que fará o encadeamento dos streams na ordem solicitada (FileWriter → UpperCaseWriter → BufferedWriter).
 
 
-Seção 5 - Exercício 1: Organização com Packages
+package io.desafios; // Define o pacote onde a classe está localizada
+
+import java.io.FilterWriter; // Classe que permite decorar outro Writer
+import java.io.Writer;       // Interface base para escrita de caracteres
+import java.io.IOException;  // Exceção para operações de entrada/saída
+
+/**
+ * Classe que implementa um Writer decorador.
+ * Ela intercepta o texto antes de ser escrito e o transforma em maiúsculas.
+ * Demonstra o uso do padrão Decorator em Java I/O.
+ */
+public class UpperCaseWriter extends FilterWriter {
+
+    /**
+     * Construtor que recebe o Writer original (decorado).
+     * @param out Writer base que será decorado com a funcionalidade de caixa alta.
+     */
+    public UpperCaseWriter(Writer out) {
+        super(out); // Chama o construtor da superclasse FilterWriter
+    }
+
+    /**
+     * Sobrescreve o método write(String) para interceptar e modificar o conteúdo.
+     * @param str A string original a ser escrita.
+     * @throws IOException Caso ocorra erro na escrita.
+     */
+    @Override
+    public void write(String str) throws IOException {
+        // Converte a string para letras maiúsculas
+        String upperCaseStr = str.toUpperCase();
+
+        // Chama o método write da superclasse, que escreve no Writer original
+        // Especifica o início (0) e o comprimento da string
+        super.write(upperCaseStr, 0, upperCaseStr.length());
+    }
+
+    // Observação: Para um filtro completo, seria interessante sobrescrever também
+    // write(char[]), write(int), write(char[], int, int), etc.
+}
+
+package io.desafios; // Define o pacote onde a classe está localizada
+
+import java.io.FilterWriter; // Classe que permite decorar outro Writer
+import java.io.Writer;       // Interface base para escrita de caracteres
+import java.io.IOException;  // Exceção para operações de entrada/saída
+
+/**
+ * Classe que implementa um Writer decorador.
+ * Ela intercepta o texto antes de ser escrito e o transforma em maiúsculas.
+ * Demonstra o uso do padrão Decorator em Java I/O.
+ */
+public class UpperCaseWriter extends FilterWriter {
+
+    /**
+     * Construtor que recebe o Writer original (decorado).
+     * @param out Writer base que será decorado com a funcionalidade de caixa alta.
+     */
+    public UpperCaseWriter(Writer out) {
+        super(out); // Chama o construtor da superclasse FilterWriter
+    }
+
+    /**
+     * Sobrescreve o método write(String) para interceptar e modificar o conteúdo.
+     * @param str A string original a ser escrita.
+     * @throws IOException Caso ocorra erro na escrita.
+     */
+    @Override
+    public void write(String str) throws IOException {
+        // Converte a string para letras maiúsculas
+        String upperCaseStr = str.toUpperCase();
+
+        // Chama o método write da superclasse, que escreve no Writer original
+        // Especifica o início (0) e o comprimento da string
+        super.write(upperCaseStr, 0, upperCaseStr.length());
+    }
+
+    // Observação: Para um filtro completo, seria interessante sobrescrever também
+    // write(char[]), write(int), write(char[], int, int), etc.
+}
+
+# Seção 5 - Exercício 1: Organização com Packages
 Crie uma estrutura de packages (pacotes) para uma aplicação de gerenciamento de estoque, focada em organização e separação de responsabilidades.
 Crie um package principal chamado br.com.estoque.
 Dentro dele, crie os seguintes sub-packages:
