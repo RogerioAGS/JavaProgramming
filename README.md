@@ -2423,85 +2423,160 @@ Primeiro, criamos o nosso filter stream customizado que herda de FilterWriter e 
 2. Programa Principal: Demonstrando o Decorator
 Agora, criamos a classe principal que fará o encadeamento dos streams na ordem solicitada (FileWriter → UpperCaseWriter → BufferedWriter).
 
-
-package io.desafios; // Define o pacote onde a classe está localizada
-
-import java.io.FilterWriter; // Classe que permite decorar outro Writer
-import java.io.Writer;       // Interface base para escrita de caracteres
-import java.io.IOException;  // Exceção para operações de entrada/saída
-
+import java.io.FilterWriter;
+import java.io.Writer;
+import java.io.IOException;
 /**
- * Classe que implementa um Writer decorador.
- * Ela intercepta o texto antes de ser escrito e o transforma em maiúsculas.
- * Demonstra o uso do padrão Decorator em Java I/O.
+ * UpperCaseWriter é um FilterWriter que converte todos os caracteres de uma String
+ * para maiúsculas antes de passá-los para o Writer subjacente (o 'out' protegido).
+ * * Isso demonstra o Padrão Decorator, onde adicionamos uma funcionalidade
+ * a um stream existente.
  */
 public class UpperCaseWriter extends FilterWriter {
-
     /**
-     * Construtor que recebe o Writer original (decorado).
-     * @param out Writer base que será decorado com a funcionalidade de caixa alta.
+     * Construtor.
+     * @param out O Writer subjacente que receberá os dados processados.
      */
     public UpperCaseWriter(Writer out) {
-        super(out); // Chama o construtor da superclasse FilterWriter
+        super(out);
     }
-
     /**
-     * Sobrescreve o método write(String) para interceptar e modificar o conteúdo.
-     * @param str A string original a ser escrita.
-     * @throws IOException Caso ocorra erro na escrita.
+     * Sobrescreve o método write(String) para converter a string para maiúsculas
+     * antes de escrever.
+     * @param str A string a ser escrita.
+     * @throws IOException Se ocorrer um erro de I/O na escrita.
      */
     @Override
     public void write(String str) throws IOException {
-        // Converte a string para letras maiúsculas
+        // Converte a string para maiúsculas
         String upperCaseStr = str.toUpperCase();
-
-        // Chama o método write da superclasse, que escreve no Writer original
-        // Especifica o início (0) e o comprimento da string
+       
+        // Chama o método write do Writer subjacente (this.out)
         super.write(upperCaseStr, 0, upperCaseStr.length());
     }
 
-    // Observação: Para um filtro completo, seria interessante sobrescrever também
-    // write(char[]), write(int), write(char[], int, int), etc.
+
+    // Nota: O método write(int c) também deveria ser sobrescrito para
+    // ser completo, mas focamos em write(String) conforme o desafio.
 }
 
-package io.desafios; // Define o pacote onde a classe está localizada
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
-import java.io.FilterWriter; // Classe que permite decorar outro Writer
-import java.io.Writer;       // Interface base para escrita de caracteres
-import java.io.IOException;  // Exceção para operações de entrada/saída
+
+public class AplicacaoDecorator {
+
+
+    public static void main(String[] args) {
+        String nomeArquivo = "maiusculo.txt";
+       
+        // Frase que será escrita em minúsculas
+        String fraseOriginal = "esta é uma frase de teste em letras minúsculas.";
+       
+        System.out.println("Frase original (minúscula): \"" + fraseOriginal + "\"");
+        System.out.println("Gravando no arquivo " + nomeArquivo + " usando o UpperCaseWriter...");
+       
+        // Define o stream mais externo como Writer para o try-with-resources
+        Writer escritorFinal = null;
+
+
+        // 1. Encadeamento de Streams (Padrão Decorator):
+        // FileWriter -> UpperCaseWriter (Customizado) -> BufferedWriter (Eficiência)
+        try (
+            // O Writer mais externo é o BufferedWriter para bufferizar a saída.
+            // Ele recebe o nosso UpperCaseWriter como argumento.
+            BufferedWriter escritor = new BufferedWriter(
+                // O UpperCaseWriter recebe o FileWriter.
+                // A ordem de processamento é de fora para dentro na construção e de dentro para fora na escrita.
+                new UpperCaseWriter(
+                    new FileWriter(nomeArquivo) // O stream base para escrita no arquivo
+                )
+            )
+        ) {
+            // 2. Escreve a frase em minúsculas. O UpperCaseWriter irá interceptar e converter.
+            escritor.write(fraseOriginal);
+           
+            // É importante fazer o flush para garantir que o buffer seja esvaziado no arquivo.
+            escritor.flush();
+           
+            System.out.println("\nEscrita concluída. Verifique o arquivo " + nomeArquivo + ".");
+            System.out.println("O conteúdo deve estar em CAIXA ALTA.");
+
+
+        } catch (IOException e) {
+            System.err.println("\n--- ERRO DE I/O ---");
+            System.err.println("Falha ao escrever ou fechar o arquivo: " + e.getMessage());
+        }
+    }
+}
+
+// Importa a interface Serializable, necessária para permitir a serialização de objetos
+import java.io.Serializable;
 
 /**
- * Classe que implementa um Writer decorador.
- * Ela intercepta o texto antes de ser escrito e o transforma em maiúsculas.
- * Demonstra o uso do padrão Decorator em Java I/O.
+ * A classe Produto representa um item com nome, preço e código.
+ * Ela implementa a interface Serializable, o que permite que seus objetos
+ * sejam convertidos em um stream de bytes para persistência ou transmissão.
  */
-public class UpperCaseWriter extends FilterWriter {
+public class ProdutoDesafios implements Serializable {
+
+    // Define um identificador de versão da classe para garantir compatibilidade
+    // durante o processo de serialização e desserialização.
+    private static final long serialVersionUID = 1L;
+
+    // Campo que representa o nome do produto. Será incluído na serialização.
+    private String nome;
+
+    // Campo que representa o preço do produto. Também será incluído na serialização.
+    private double preco;
+
+    // Campo que representa o código do produto.
+    // A palavra-chave 'transient' indica que este campo NÃO será serializado.
+    // Isso é útil para dados sensíveis ou temporários que não devem ser persistidos.
+    private transient int codigo;
 
     /**
-     * Construtor que recebe o Writer original (decorado).
-     * @param out Writer base que será decorado com a funcionalidade de caixa alta.
+     * Construtor da classe Produto.
+     * Permite criar um objeto Produto com nome, preço e código definidos.
+     *
+     * @param nome   Nome do produto
+     * @param preco  Preço do produto
+     * @param codigo Código do produto (não será serializado)
      */
-    public UpperCaseWriter(Writer out) {
-        super(out); // Chama o construtor da superclasse FilterWriter
+    public ProdutoDesafios(String nome, double preco, int codigo) {
+        this.nome = nome;
+        this.preco = preco;
+        this.codigo = codigo;
+    }
+
+    // Método getter para acessar o nome do produto
+    public String getNome() {
+        return nome;
+    }
+
+    // Método getter para acessar o preço do produto
+    public double getPreco() {
+        return preco;
+    }
+
+    // Método getter para acessar o código do produto
+    // Mesmo sendo transient, ainda pode ser acessado normalmente
+    public int getCodigo() {
+        return codigo;
     }
 
     /**
-     * Sobrescreve o método write(String) para interceptar e modificar o conteúdo.
-     * @param str A string original a ser escrita.
-     * @throws IOException Caso ocorra erro na escrita.
+     * Método toString sobrescrito para facilitar a visualização do objeto.
+     * Exibe os valores dos campos em formato legível.
+     * Após a desserialização, o campo 'codigo' será 0 (valor padrão de int),
+     * pois não foi incluído no processo de serialização.
      */
     @Override
-    public void write(String str) throws IOException {
-        // Converte a string para letras maiúsculas
-        String upperCaseStr = str.toUpperCase();
-
-        // Chama o método write da superclasse, que escreve no Writer original
-        // Especifica o início (0) e o comprimento da string
-        super.write(upperCaseStr, 0, upperCaseStr.length());
+    public String toString() {
+        return "Produto [Nome: " + nome + ", Preço: " + preco + ", Código: " + codigo + "]";
     }
-
-    // Observação: Para um filtro completo, seria interessante sobrescrever também
-    // write(char[]), write(int), write(char[], int, int), etc.
 }
 
 # Seção 5 - Exercício 1: Organização com Packages
