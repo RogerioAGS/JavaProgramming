@@ -1,39 +1,54 @@
-package io.desafios; // Define o pacote onde a classe está localizada
+//package io.desafios;
 
-import java.io.FilterWriter; // Classe que permite decorar outro Writer
-import java.io.Writer;       // Interface base para escrita de caracteres
-import java.io.IOException;  // Exceção para operações de entrada/saída
 
-/**
- * Classe que implementa um Writer decorador.
- * Ela intercepta o texto antes de ser escrito e o transforma em maiúsculas.
- * Demonstra o uso do padrão Decorator em Java I/O.
- */
-public class UpperCaseWriter extends FilterWriter {
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
-    /**
-     * Construtor que recebe o Writer original (decorado).
-     * @param out Writer base que será decorado com a funcionalidade de caixa alta.
-     */
-    public UpperCaseWriter(Writer out) {
-        super(out); // Chama o construtor da superclasse FilterWriter
+
+public class AplicacaoDecorator {
+
+
+    public static void main(String[] args) {
+        String nomeArquivo = "maiusculo.txt";
+       
+        // Frase que será escrita em minúsculas
+        String fraseOriginal = "esta é uma frase de teste em letras minúsculas.";
+       
+        System.out.println("Frase original (minúscula): \"" + fraseOriginal + "\"");
+        System.out.println("Gravando no arquivo " + nomeArquivo + " usando o UpperCaseWriter...");
+       
+        // Define o stream mais externo como Writer para o try-with-resources
+        Writer escritorFinal = null;
+
+
+        // 1. Encadeamento de Streams (Padrão Decorator):
+        // FileWriter -> UpperCaseWriter (Customizado) -> BufferedWriter (Eficiência)
+        try (
+            // O Writer mais externo é o BufferedWriter para bufferizar a saída.
+            // Ele recebe o nosso UpperCaseWriter como argumento.
+            BufferedWriter escritor = new BufferedWriter(
+                // O UpperCaseWriter recebe o FileWriter.
+                // A ordem de processamento é de fora para dentro na construção e de dentro para fora na escrita.
+                new UpperCaseWriter(
+                    new FileWriter(nomeArquivo) // O stream base para escrita no arquivo
+                )
+            )
+        ) {
+            // 2. Escreve a frase em minúsculas. O UpperCaseWriter irá interceptar e converter.
+            escritor.write(fraseOriginal);
+           
+            // É importante fazer o flush para garantir que o buffer seja esvaziado no arquivo.
+            escritor.flush();
+           
+            System.out.println("\nEscrita concluída. Verifique o arquivo " + nomeArquivo + ".");
+            System.out.println("O conteúdo deve estar em CAIXA ALTA.");
+
+
+        } catch (IOException e) {
+            System.err.println("\n--- ERRO DE I/O ---");
+            System.err.println("Falha ao escrever ou fechar o arquivo: " + e.getMessage());
+        }
     }
-
-    /**
-     * Sobrescreve o método write(String) para interceptar e modificar o conteúdo.
-     * @param str A string original a ser escrita.
-     * @throws IOException Caso ocorra erro na escrita.
-     */
-    @Override
-    public void write(String str) throws IOException {
-        // Converte a string para letras maiúsculas
-        String upperCaseStr = str.toUpperCase();
-
-        // Chama o método write da superclasse, que escreve no Writer original
-        // Especifica o início (0) e o comprimento da string
-        super.write(upperCaseStr, 0, upperCaseStr.length());
-    }
-
-    // Observação: Para um filtro completo, seria interessante sobrescrever também
-    // write(char[]), write(int), write(char[], int, int), etc.
 }

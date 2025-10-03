@@ -1,39 +1,37 @@
-package io.desafios; // Define o pacote onde a classe está localizada
-
-import java.io.FilterWriter; // Classe que permite decorar outro Writer
-import java.io.Writer;       // Interface base para escrita de caracteres
-import java.io.IOException;  // Exceção para operações de entrada/saída
-
+//package io.desafios;
+import java.io.FilterWriter;
+import java.io.Writer;
+import java.io.IOException;
 /**
- * Classe que implementa um Writer decorador.
- * Ela intercepta o texto antes de ser escrito e o transforma em maiúsculas.
- * Demonstra o uso do padrão Decorator em Java I/O.
+ * UpperCaseWriter é um FilterWriter que converte todos os caracteres de uma String
+ * para maiúsculas antes de passá-los para o Writer subjacente (o 'out' protegido).
+ * * Isso demonstra o Padrão Decorator, onde adicionamos uma funcionalidade
+ * a um stream existente.
  */
 public class UpperCaseWriter extends FilterWriter {
-
     /**
-     * Construtor que recebe o Writer original (decorado).
-     * @param out Writer base que será decorado com a funcionalidade de caixa alta.
+     * Construtor.
+     * @param out O Writer subjacente que receberá os dados processados.
      */
     public UpperCaseWriter(Writer out) {
-        super(out); // Chama o construtor da superclasse FilterWriter
+        super(out);
     }
-
     /**
-     * Sobrescreve o método write(String) para interceptar e modificar o conteúdo.
-     * @param str A string original a ser escrita.
-     * @throws IOException Caso ocorra erro na escrita.
+     * Sobrescreve o método write(String) para converter a string para maiúsculas
+     * antes de escrever.
+     * @param str A string a ser escrita.
+     * @throws IOException Se ocorrer um erro de I/O na escrita.
      */
     @Override
     public void write(String str) throws IOException {
-        // Converte a string para letras maiúsculas
+        // Converte a string para maiúsculas
         String upperCaseStr = str.toUpperCase();
-
-        // Chama o método write da superclasse, que escreve no Writer original
-        // Especifica o início (0) e o comprimento da string
+       
+        // Chama o método write do Writer subjacente (this.out)
         super.write(upperCaseStr, 0, upperCaseStr.length());
     }
 
-    // Observação: Para um filtro completo, seria interessante sobrescrever também
-    // write(char[]), write(int), write(char[], int, int), etc.
+
+    // Nota: O método write(int c) também deveria ser sobrescrito para
+    // ser completo, mas focamos em write(String) conforme o desafio.
 }
