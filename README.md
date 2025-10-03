@@ -2839,3 +2839,36 @@ public class AplicacaoConfig {
         dao.conectar();
     }
 }
+
+Exercício 3: Preparando para Implantação (JAR Executável)
+Descreva as etapas para criar um arquivo JAR executável para o projeto criado no Exercício 1, que será a forma de implantação mais básica.
+Liste os três elementos/artefatos que precisam estar dentro do arquivo JAR para que ele seja executável.
+Descreva a função do arquivo MANIFEST.MF nesse contexto, especificando qual atributo chave é obrigatório.
+Descreva o comando de terminal que o usuário final usaria para executar o JAR.
+Foco: Conceitos de empacotamento JAR e o papel do Manifest na definição do ponto de entrada da aplicação.
+O Exercício 3 aborda a etapa final de desenvolvimento: o empacotamento para Implantação (Deployment), focando na criação de um arquivo JAR Executável.
+Aqui está a descrição das etapas e os conceitos solicitados.
+
+Preparando um JAR Executável
+O JAR (Java Archive) é o formato padrão para empacotar e distribuir aplicações Java. Para que um JAR seja executável pelo usuário final (sem que ele precise saber qual classe tem o método main), ele requer uma configuração especial no arquivo MANIFEST.MF.
+1. Elementos Essenciais em um JAR Executável
+Para que um arquivo JAR funcione como uma aplicação autônoma, ele deve conter, no mínimo, os três seguintes artefatos:
+Arquivos de Classe Compilados (.class): O código de toda a aplicação (incluindo Produto.class, ServicoEstoque.class, Main.class, etc.) compilado.
+Recursos: Quaisquer arquivos estáticos que o aplicativo utilize (ex: imagens, arquivos de configuração ou, no caso deste exercício, o entrada.txt se fosse necessário).
+Arquivo MANIFEST.MF: O metadado que informa à JVM como iniciar a aplicação.
+2. A Função do Arquivo MANIFEST.MF
+O MANIFEST.MF é um arquivo de metadados localizado dentro do diretório META-INF/ do JAR. Sua função crucial é fornecer informações de controle sobre o conteúdo do JAR.
+Atributo Chave Obrigatório: O atributo obrigatório para tornar o JAR executável é o Main-Class.
+Exemplo de Conteúdo do MANIFEST.MF:
+Manifest-Version: 1.0
+Created-By: 1.8.0_201 (Oracle Corporation)
+Main-Class: br.com.estoque.app.Main 
+
+Neste exemplo, Main-Class: br.com.estoque.app.Main diz à JVM: "O ponto de entrada (o método public static void main(String[] args)) está na classe Main dentro do pacote br.com.estoque.app."
+3. Comando de Terminal para Execução
+Uma vez que o JAR tenha sido criado e o atributo Main-Class tenha sido configurado corretamente no MANIFEST.MF, o usuário final que tenha o JRE (Java Runtime Environment) instalado pode executar a aplicação diretamente do terminal com o seguinte comando:
+java -jar nome_do_arquivo.jar
+Para o projeto do Exercício 1, o comando seria:
+java -jar estoque-app.jar
+Este comando instrui a JVM a executar o arquivo JAR especificado, usando o Main-Class definido no seu arquivo MANIFEST.MF como o ponto de partida.
+
