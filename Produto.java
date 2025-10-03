@@ -1,18 +1,40 @@
-package br.com.estoque.modelo; // Define o pacote onde esta classe está localizada
+// Importa a interface Serializable, necessária para permitir a serialização de objetos
+import java.io.Serializable;
 
 /**
- * Classe de Modelo (Dados): Representa um item no estoque.
- * Fica no package br.com.estoque.modelo.
+ * A classe Produto representa um item com nome, preço e código.
+ * Ela implementa a interface Serializable, o que permite que seus objetos
+ * sejam convertidos em um stream de bytes para persistência ou transmissão.
  */
-public class Produto {
-    // Atributos privados para encapsulamento
-    private String nome;         // Nome do produto
-    private int quantidade;      // Quantidade disponível no estoque
+public class Produto implements Serializable {
 
-    // Construtor para inicializar o produto com nome e quantidade
-    public Produto(String nome, int quantidade) {
+    // Define um identificador de versão da classe para garantir compatibilidade
+    // durante o processo de serialização e desserialização.
+    private static final long serialVersionUID = 1L;
+
+    // Campo que representa o nome do produto. Será incluído na serialização.
+    private String nome;
+
+    // Campo que representa o preço do produto. Também será incluído na serialização.
+    private double preco;
+
+    // Campo que representa o código do produto.
+    // A palavra-chave 'transient' indica que este campo NÃO será serializado.
+    // Isso é útil para dados sensíveis ou temporários que não devem ser persistidos.
+    private transient int codigo;
+
+    /**
+     * Construtor da classe Produto.
+     * Permite criar um objeto Produto com nome, preço e código definidos.
+     *
+     * @param nome   Nome do produto
+     * @param preco  Preço do produto
+     * @param codigo Código do produto (não será serializado)
+     */
+    public Produto(String nome, double preco, int codigo) {
         this.nome = nome;
-        this.quantidade = quantidade;
+        this.preco = preco;
+        this.codigo = codigo;
     }
 
     // Método getter para acessar o nome do produto
@@ -20,19 +42,25 @@ public class Produto {
         return nome;
     }
 
-    // Método getter para acessar a quantidade atual do produto
-    public int getQuantidade() {
-        return quantidade;
+    // Método getter para acessar o preço do produto
+    public double getPreco() {
+        return preco;
     }
 
-    // Método para adicionar unidades ao estoque
-    public void adicionarEstoque(int valor) {
-        this.quantidade += valor; // Soma o valor recebido à quantidade atual
+    // Método getter para acessar o código do produto
+    // Mesmo sendo transient, ainda pode ser acessado normalmente
+    public int getCodigo() {
+        return codigo;
     }
 
-    // Método sobrescrito para representar o produto como uma string
+    /**
+     * Método toString sobrescrito para facilitar a visualização do objeto.
+     * Exibe os valores dos campos em formato legível.
+     * Após a desserialização, o campo 'codigo' será 0 (valor padrão de int),
+     * pois não foi incluído no processo de serialização.
+     */
     @Override
     public String toString() {
-        return nome + " (Qtd: " + quantidade + ")"; // Ex: "Livro Java Avançado (Qtd: 10)"
+        return "Produto [Nome: " + nome + ", Preço: " + preco + ", Código: " + codigo + "]";
     }
 }
