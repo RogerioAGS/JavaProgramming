@@ -1,26 +1,24 @@
-package br.com.estoque.servico; // Define o pacote onde esta classe está localizada
+//package br.com.estoque.servico;
 
-// Importa a classe Produto do pacote modelo para poder usá-la aqui
+
+// É necessário importar a classe Produto, pois ela está em outro package
 import br.com.estoque.modelo.Produto;
+
 
 /**
  * Classe de Serviço (Lógica): Contém regras de negócio.
  * Fica no package br.com.estoque.servico.
  */
 public class ServicoEstoque {
-
+   
     /**
-     * Método que simula a adição de produtos ao estoque.
-     * Aplica uma regra simples: só adiciona se o valor for positivo.
+     * Simula a adição de um produto ao estoque com uma regra simples.
      */
-    public void adicionarProduto(Produto p, int valor) {
+    public void adicionarProduto(ProdutoEstoque p, int valor) {
         if (valor > 0) {
-            // Chama o método da classe Produto para adicionar ao estoque
             p.adicionarEstoque(valor);
-            // Imprime um log informando a operação realizada
             System.out.println("LOG: Adicionado " + valor + " unidades de " + p.getNome() + ".");
         } else {
-            // Caso o valor seja inválido, imprime uma mensagem de erro
             System.out.println("LOG: Valor de adição deve ser positivo.");
         }
     }

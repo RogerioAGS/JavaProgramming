@@ -1,8 +1,10 @@
-package br.com.estoque.app; // Define o pacote onde esta classe está localizada
+//package br.com.estoque.app;
 
-// Importa as classes necessárias de outros pacotes
+
+// Importa classes de outros packages para poder usá-las
 import br.com.estoque.modelo.Produto;
 import br.com.estoque.servico.ServicoEstoque;
+
 
 /**
  * Classe Principal da Aplicação (App): Ponto de entrada (método main).
@@ -10,29 +12,30 @@ import br.com.estoque.servico.ServicoEstoque;
  */
 public class Main {
 
-    // Método principal que inicia a aplicação
-    public static void main(String[] args) {
 
-        // Imprime a estrutura de pacotes para demonstrar organização
+    public static void main(String[] args) {
+       
         System.out.println("--- ESTRUTURA DE PACKAGES ---");
         System.out.println("Aplicação Principal: br.com.estoque.app");
         System.out.println("Modelo de Dados:     br.com.estoque.modelo");
         System.out.println("Lógica de Negócio:   br.com.estoque.servico");
         System.out.println("-----------------------------\n");
 
-        // Cria uma instância de Produto com nome e quantidade inicial
-        Produto livro = new Produto("Livro Java Avançado", 10);
 
-        // Cria uma instância do serviço de estoque
+
+
+        // 1. Cria uma instância de Produto (do package 'modelo')
+        ProdutoEstoque livro = new ProdutoEstoque("Livro Java Avançado", 10);
+       
+        // 2. Cria uma instância de ServicoEstoque (do package 'servico')
         ServicoEstoque servico = new ServicoEstoque();
-
-        // Mostra o estado do produto antes da operação
+       
         System.out.println("Produto antes da operação: " + livro);
-
-        // Usa o serviço para adicionar unidades ao estoque do produto
+       
+        // 3. Usa o ServicoEstoque para operar sobre o Produto,
+        // demonstrando o uso de classes de diferentes packages.
         servico.adicionarProduto(livro, 5);
-
-        // Mostra o estado do produto após a operação
+       
         System.out.println("Produto após a operação:  " + livro);
     }
 }
