@@ -3222,7 +3222,11 @@ public class ConsultaBasica {
     private static final String USUARIO = "system"; // Nome de usuário do banco
     private static final String SENHA = "oracle";   // Senha do usuário
     private static final String SQL_SELECT = "SELECT ID, NOME FROM PRODUTOS"; // Comando SQL para recuperar dados da tabela PRODUTOS
-
+	/*Objetivo:Conecta-se ao banco Oracle usando JDBC.
+	*Executa uma consulta SELECT ID, NOME FROM PRODUTOS.
+	*Itera sobre os resultados e imprime cada linha no console.
+	*Usa try-with-resources para fechar automaticamente Connection, Statement e ResultSet.
+	*/
     public static void main(String[] args) {
 
         // Mensagem inicial para indicar o início do teste de conexão e consulta
