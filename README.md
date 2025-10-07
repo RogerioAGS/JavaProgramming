@@ -2954,3 +2954,165 @@ Para o projeto do Exercício 1, o comando seria:
 java -jar estoque-app.jar
 Este comando instrui a JVM a executar o arquivo JAR especificado, usando o Main-Class definido no seu arquivo MANIFEST.MF como o ponto de partida.
 
+Desafios de Aprofundamento
+
+Seção 5 - Desafio 1: Design de Aplicação em Três Camadas
+Reestruture a aplicação do Exercício 1 mentalmente (ou no código) para refletir uma arquitetura de três camadas completa, que é o padrão para aplicações com backend e banco de dados.
+Defina o nome dos packages que representariam cada uma das três camadas:
+Camada 1 (Apresentação): Interação com o usuário (ex: terminal, web, desktop).
+Camada 2 (Negócios/Serviço): Lógica da aplicação.
+Camada 3 (Persistência/DAL): Comunicação com o banco de dados.
+Desenhe o fluxo de chamadas (ex: main chama o serviço, serviço chama o DAO) quando um usuário solicita a "criação de um novo produto".
+Justifique por que é importante que a Camada de Negócios não acesse o DatabaseConfig diretamente (ou seja, por que ela não deve conhecer os detalhes de conexão).
+Foco: Entendimento da arquitetura em camadas (Model-Service-DAO) e a separação de responsabilidades.
+Desafio 1 é fundamental, pois ele migra o foco do código em si para a arquitetura da aplicação, que é como as aplicações Java complexas são estruturadas no mundo real.
+Aqui está a reestruturação da aplicação do Exercício 1 com base no Design em Três Camadas (3-Tier Architecture).
+
+
+Desafio 1: Design de Aplicação em Três Camadas
+A arquitetura em três camadas garante a Separação de Preocupações (Separation of Concerns), tornando o código mais fácil de manter, testar e dimensionar.
+1. Definição e Nomenclatura dos Packages
+A convenção de nomenclatura da aplicação (br.com.estoque) é mantida, e sub-packages são criados para cada camada:
+Camada
+Nomenclatura do Package
+Responsabilidade Principal
+Classes de Exemplo
+Camada 1: Apresentação
+br.com.estoque.app
+Lida com a interação com o usuário (I/O, interface, CLI, Web).
+Main, ConsoleUI, ProdutoController
+Camada 2: Negócios/Serviço
+br.com.estoque.servico
+Contém toda a lógica de negócio (regras, validações).
+ServicoEstoque
+Camada 3: Persistência/DAL
+br.com.estoque.infra.dao
+Responsável por todas as operações de comunicação com o banco de dados (SQL, JDBC/JPA).
+ProdutoDAO, DatabaseConfig
+Modelo
+br.com.estoque.modelo
+Estruturas de dados passadas entre as camadas.
+Produto
+
+
+2. Fluxo de Chamadas: Criando um Novo Produto
+Quando um usuário, através da interface, solicita a "criação de um novo produto", o fluxo de execução obedece à hierarquia das camadas, sempre descendo na estrutura:
+Apresentação (br.com.estoque.app)
+O método main (ou o controlador web) captura o nome e a quantidade do produto do usuário.
+Chamada: A Camada de Apresentação chama a Camada de Serviço (servicoEstoque.criarNovoProduto(nome, quantidade)).
+Negócios/Serviço (br.com.estoque.servico)
+A classe ServicoEstoque recebe os dados.
+Lógica: Valida as regras (ex: o nome é único? a quantidade é positiva?).
+Cria a instância do objeto Produto (new Produto(...)).
+Chamada: O Serviço chama a Camada de Persistência (produtoDAO.salvar(produto)).
+Persistência/DAL (br.com.estoque.infra.dao)
+A classe ProdutoDAO recebe o objeto Produto.
+Ação: Usa JDBC para abrir uma conexão, monta a query SQL (INSERT INTO...), e executa a operação no banco de dados.
+Retorno: O ProdutoDAO retorna o sucesso ou falha da operação para o Serviço.
+Retorno da Cadeia: O Serviço processa a resposta do DAO e a envia de volta para a Camada de Apresentação, que informa o resultado ao usuário.
+3. Justificativa: Por que a Camada de Negócios não deve acessar DatabaseConfig
+É fundamental que a Camada de Negócios (br.com.estoque.servico) não acesse a classe DatabaseConfig (que contém URL, usuário e senha do DB) diretamente. Isso se justifica pelos seguintes princípios:
+Princípio
+Impacto da Violação
+Separação de Preocupações
+A responsabilidade do Serviço é saber o que fazer (a regra), não como salvar (a tecnologia). O Serviço deve saber que o DAO existe, mas não onde o DAO se conecta.
+Flexibilidade (Portabilidade)
+Se a aplicação decidir mudar de MySQL para PostgreSQL, ou de JDBC para JPA/Hibernate, apenas a Camada de Persistência (DAO) precisa ser alterada. O Serviço permanece inalterado.
+Testabilidade
+Ao testar o Serviço, não queremos que ele tente se conectar a um banco de dados real. Mantendo as preocupações separadas, podemos facilmente "simular" o ProdutoDAO e testar apenas a lógica de negócio do Serviço.
+Segurança
+Concentrar as credenciais no DAO garante que elas sejam usadas apenas para a finalidade de persistência, facilitando o controle de acesso dentro do código.
+
+Em resumo, a Camada de Serviço se importa com o que é um Produto, e o DAO se importa com como o Produto é salvo. Separar esses interesses mantém a aplicação robusta e adaptável.
+
+Seção 5 - Desafio 2: Implantação de Aplicação Web (WAR) vs. Desktop (JAR)
+Compare os formatos de implantação WAR e JAR.
+Explique a diferença fundamental entre os ambientes onde um arquivo WAR é executado (servidor de aplicação/contêiner) e onde um arquivo JAR é executado (máquina local com JVM).
+Liste dois componentes chave de uma aplicação web (ex: web.xml ou Servlets) que estão presentes em um WAR, mas não em um JAR executável padrão.
+Descreva como o componente JDBC Driver (o JAR do banco de dados) é tratado em cada cenário de implantação.
+Foco: Tipos de artefatos de implantação e seus ambientes de execução.
+Desafio 2 aborda o aspecto prático de como as aplicações Java vivem no mundo real, comparando os formatos de empacotamento JAR e WAR.
+Aqui está a análise detalhada sobre os ambientes, componentes e tratamento do JDBC Driver para cada tipo de implantação.
+
+Seção 5 - Desafio 2: Implantação (JAR vs. WAR)
+1. Diferença Fundamental de Ambiente
+A diferença essencial reside na responsabilidade e no contexto de execução que o ambiente oferece ao aplicativo.
+Característica
+Arquivo JAR Executável (.jar)
+Arquivo WAR (.war)
+Ambiente de Execução
+JVM Local (Máquina Virtual Java).
+Contêiner de Servlet / Servidor de Aplicação (Ex: Tomcat, WildFly, Jetty).
+Responsabilidade
+O JAR DEVE conter tudo o que é necessário para rodar, incluindo o método main() que inicia a aplicação.
+O WAR NÃO contém um método main(). Ele é um conjunto de recursos que é "plugado" em um host (o Servidor de Aplicação).
+Natureza
+Aplicação Standalone (Console, Desktop, ou Backend com main).
+Aplicação Hospedada (Web, HTTP, Servlets).
+
+Em resumo:
+O JAR roda "por conta própria", precisando apenas de uma JVM instalada.
+O WAR depende de um ambiente de servidor que oferece serviços HTTP, gerenciamento de ciclo de vida de servlets e acesso a recursos, como pools de conexão.
+2. Componentes Chave Exclusivos do WAR
+O formato WAR (Web Archive) é estruturado especificamente para hospedar conteúdo web e deve incluir componentes que definem o mapeamento de URLs e a lógica de processamento HTTP.
+Os dois componentes chave que estão presentes em um WAR, mas ausentes em um JAR executável padrão, são:
+Servlets: São classes Java que estendem a funcionalidade de um servidor. Eles gerenciam requisições e respostas HTTP. O código principal de uma aplicação web Java é frequentemente escrito em servlets.
+Diretório WEB-INF/ e web.xml (ou Configurações Equivalentes):
+O diretório WEB-INF/ (Web Information) contém recursos essenciais, como classes compiladas e bibliotecas.
+O arquivo web.xml (Web Deployment Descriptor) mapeia URLs para Servlets, define parâmetros de contexto e configura filtros de segurança. Embora frameworks modernos como Spring Boot ou Jakarta EE usem anotações para substituir o web.xml, o conceito de metadados de implantação web (mapeamento HTTP) é exclusivo do WAR.
+3. Tratamento do JDBC Driver
+O JDBC Driver é uma biblioteca (geralmente um arquivo JAR) que permite à aplicação Java falar com um banco de dados específico. A forma como ele é tratado depende do modelo de implantação:
+Formato
+Localização do JDBC Driver
+Gerenciamento
+JAR Executável
+Dentro do próprio JAR ou referenciado no MANIFEST.MF na seção Class-Path.
+A aplicação é responsável por carregar o driver e gerenciar a conexão. Todas as dependências devem ser empacotadas.
+WAR (Implantação Clássica)
+No Servidor de Aplicação, em um diretório como lib/ do Tomcat ou modules/ do WildFly.
+O Servidor de Aplicação gerencia o driver e, crucialmente, gerencia os Pools de Conexão (DataSources). A aplicação apenas solicita uma conexão ao pool do servidor em vez de criar uma nova do zero.
+
+Vantagem do WAR: No ambiente WAR, o servidor cuida do driver e da otimização de conexões, liberando a aplicação de grande parte do gerenciamento de recursos.
+
+Seção 5 - Desafio 3: Gerenciamento de Dependências do Banco de Dados
+Imagine que você está usando a API JPA/Hibernate para acessar o banco de dados e está usando Maven como ferramenta de build.
+O que é uma Dependência no contexto do Maven? Cite a tag XML que a define.
+Qual a principal função do arquivo pom.xml?
+Descreva por que a ferramenta de build (Maven) é crucial para a implantação de uma aplicação com backend. Como ela garante que o JDBC Driver e as bibliotecas do Hibernate sejam incluídos no pacote final (JAR/WAR)?
+Foco: Introdução aos conceitos de Gerenciamento de Dependências e Build Tools (Maven), essenciais para a implantação de aplicações complexas.
+Desafio 3 aborda o gerenciamento de dependências, que é o coração de qualquer projeto Java moderno e crucial para a implantação.
+Vamos analisar o papel do Maven e seus conceitos-chave, como pom.xml e dependências.
+
+Desafio 3: Gerenciamento de Dependências com Maven
+1. O que é uma Dependência no Contexto do Maven?
+No contexto do Maven, uma Dependência é um projeto de software externo (geralmente uma biblioteca JAR) do qual seu projeto necessita para compilar, executar ou testar.
+Em vez de baixar manualmente o JAR e colocá-lo na pasta lib do seu projeto, você simplesmente declara a dependência no Maven, e a ferramenta cuida do download, do armazenamento e da inclusão automática no seu classpath.
+O elemento XML usado para definir uma dependência no arquivo pom.xml é a tag <dependency>:
+XML
+<dependencies>
+    <!-- Exemplo de dependência: Biblioteca Hibernate Core -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>6.5.0.Final</version>
+    </dependency>
+</dependencies>
+
+2. Principal Função do Arquivo pom.xml
+O arquivo pom.xml (Project Object Model) é o arquivo de configuração central e fundamental do Maven. Ele define as regras e o ciclo de vida do seu projeto.
+A principal função do pom.xml é atuar como o mapa completo do projeto, fornecendo ao Maven todas as informações necessárias para gerenciar, construir e empacotar o código.
+As funções chave incluem:
+Identificação: Definir o groupId, artifactId e version do seu próprio projeto.
+Gerenciamento de Dependências: Listar todas as bibliotecas externas que o projeto utiliza (como JDBC e Hibernate).
+Ciclo de Vida do Build: Definir as fases de build (compilação, teste, empacotamento).
+Plugins: Configurar plugins (extensões do Maven) para tarefas específicas (ex: criar um JAR executável ou rodar testes unitários).
+3. A Importância do Maven na Implantação de Aplicações Backend
+O Maven é crucial para a implantação de aplicações backend porque ele resolve o problema de gerenciamento de classpath e empacotamento de forma determinística e automática.
+Como o Maven Garante a Inclusão de Dependências:
+Resolução de Dependências Transitivas: Se você adiciona a dependência do Hibernate no seu pom.xml, o Maven não baixa apenas o Hibernate. Ele consulta o repositório central e baixa todas as bibliotecas auxiliares das quais o Hibernate depende (como o SLF4J para logging ou bibliotecas de caching). Isso é chamado de dependência transitiva.
+Fase de Empacotamento (package goal): Quando você executa o comando de build do Maven (mvn package), o Maven entra na fase de empacotamento:
+Para WAR: O Maven cria o arquivo .war e coloca todas as classes compiladas do projeto e todos os JARs de dependência (incluindo o JDBC Driver e as bibliotecas do Hibernate) no diretório WEB-INF/lib/ do arquivo WAR.
+Para JAR Executável: O Maven pode ser configurado (via plugins como o maven-assembly-plugin ou maven-shade-plugin) para criar um único JAR grande (conhecido como "uber-JAR" ou "fat-JAR") que contém o código do seu aplicativo e todas as suas dependências.
+O resultado é um artefato final (JAR ou WAR) que é autossuficiente e garante que o ambiente de execução terá todas as bibliotecas necessárias para acessar o banco de dados.
+O Maven transforma um conjunto complexo de arquivos e dependências em um único artefato distribuível de forma confiável.
+
