@@ -2823,7 +2823,7 @@ public class Main {
     }
 }
 
-Seção 5 - Exercício 2: Simulação de Configuração de Banco de Dados
+# Seção 5 - Exercício 2: Simulação de Configuração de Banco de Dados
 Crie classes para simular a camada de Acesso a Dados (DAL) de uma aplicação e configure as informações de conexão.
 Crie um package chamado infra.data.
 Dentro dele, crie a classe DatabaseConfig com três campos public static final String:
@@ -2922,7 +2922,7 @@ public class AplicacaoConfig {
     }
 }
 
-Exercício 3: Preparando para Implantação (JAR Executável)
+# Exercício 3: Preparando para Implantação (JAR Executável)
 Descreva as etapas para criar um arquivo JAR executável para o projeto criado no Exercício 1, que será a forma de implantação mais básica.
 Liste os três elementos/artefatos que precisam estar dentro do arquivo JAR para que ele seja executável.
 Descreva a função do arquivo MANIFEST.MF nesse contexto, especificando qual atributo chave é obrigatório.
@@ -2956,7 +2956,7 @@ Este comando instrui a JVM a executar o arquivo JAR especificado, usando o Main-
 
 Desafios de Aprofundamento
 
-Seção 5 - Desafio 1: Design de Aplicação em Três Camadas
+# Seção 5 - Desafio 1: Design de Aplicação em Três Camadas
 Reestruture a aplicação do Exercício 1 mentalmente (ou no código) para refletir uma arquitetura de três camadas completa, que é o padrão para aplicações com backend e banco de dados.
 Defina o nome dos packages que representariam cada uma das três camadas:
 Camada 1 (Apresentação): Interação com o usuário (ex: terminal, web, desktop).
@@ -2969,7 +2969,7 @@ Desafio 1 é fundamental, pois ele migra o foco do código em si para a arquitet
 Aqui está a reestruturação da aplicação do Exercício 1 com base no Design em Três Camadas (3-Tier Architecture).
 
 
-Desafio 1: Design de Aplicação em Três Camadas
+# Seção 5 - Desafio 1: Design de Aplicação em Três Camadas
 A arquitetura em três camadas garante a Separação de Preocupações (Separation of Concerns), tornando o código mais fácil de manter, testar e dimensionar.
 1. Definição e Nomenclatura dos Packages
 A convenção de nomenclatura da aplicação (br.com.estoque) é mantida, e sub-packages são criados para cada camada:
@@ -3034,7 +3034,7 @@ Foco: Tipos de artefatos de implantação e seus ambientes de execução.
 Desafio 2 aborda o aspecto prático de como as aplicações Java vivem no mundo real, comparando os formatos de empacotamento JAR e WAR.
 Aqui está a análise detalhada sobre os ambientes, componentes e tratamento do JDBC Driver para cada tipo de implantação.
 
-Seção 5 - Desafio 2: Implantação (JAR vs. WAR)
+# Seção 5 - Desafio 2: Implantação (JAR vs. WAR)
 1. Diferença Fundamental de Ambiente
 A diferença essencial reside na responsabilidade e no contexto de execução que o ambiente oferece ao aplicativo.
 Característica
@@ -3115,4 +3115,80 @@ Para WAR: O Maven cria o arquivo .war e coloca todas as classes compiladas do pr
 Para JAR Executável: O Maven pode ser configurado (via plugins como o maven-assembly-plugin ou maven-shade-plugin) para criar um único JAR grande (conhecido como "uber-JAR" ou "fat-JAR") que contém o código do seu aplicativo e todas as suas dependências.
 O resultado é um artefato final (JAR ou WAR) que é autossuficiente e garante que o ambiente de execução terá todas as bibliotecas necessárias para acessar o banco de dados.
 O Maven transforma um conjunto complexo de arquivos e dependências em um único artefato distribuível de forma confiável.
+
+# Seção 6 - Exercício Prático: Conexão Inicial JDBC
+Imagine que você precisa verificar se a sua aplicação Java consegue se conectar corretamente ao seu banco de dados Oracle usando o JDBC Thin Driver.
+O Cenário
+Você está usando um banco de dados local com as seguintes credenciais:
+Driver: oracle.jdbc.driver.OracleDriver (Embora a partir do Java 6/7, o DriverManager geralmente encontre o driver automaticamente, é bom saber o nome da classe).
+URL de Conexão: jdbc:oracle:thin:@localhost:1521:XE
+Usuário: system
+Senha: oracle (ou sua senha de usuário)
+A Tarefa
+Crie uma classe Java simples chamada TesteConexao com um método main. O programa deve:
+Declarar as variáveis de Connection, Statement e ResultSet (mesmo que não as usemos totalmente, é um bom hábito).
+Tentar estabelecer a conexão usando DriverManager.getConnection().
+Imprimir uma mensagem de sucesso ou falha.
+Obrigatório: Usar o bloco try-with-resources para garantir que o objeto Connection seja fechado automaticamente, mesmo que ocorram exceções.
+
+// Importação das classes necessárias para trabalhar com JDBC
+import java.sql.Connection;   // Representa a conexão com o banco de dados
+import java.sql.DriverManager; // Gerencia os drivers e cria conexões
+import java.sql.SQLException;  // Trata exceções relacionadas a SQL
+import java.sql.Statement;     // Permite executar comandos SQL
+import java.sql.ResultSet;     // Armazena os resultados de uma consulta SQL
+
+// Definição da classe principal
+public class TesteConexao {
+
+    // 1. Definição das constantes de conexão
+    // URL: Endereço do banco de dados Oracle usando o driver JDBC Thin
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+    
+    // USUARIO: Nome de usuário do banco de dados
+    private static final String USUARIO = "system";
+    
+    // SENHA: Senha correspondente ao usuário
+    private static final String SENHA = "oracle";
+
+    // Método principal que será executado ao rodar o programa
+    public static void main(String[] args) {
+        
+        // 2. Declaração das variáveis Statement e ResultSet
+        // Mesmo que não sejam usadas neste exemplo, é uma boa prática declará-las
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        // 3. Bloco try-with-resources para garantir o fechamento automático da conexão
+        // O objeto Connection será fechado automaticamente ao final do bloco
+        try (
+            // Tentativa de estabelecer a conexão com o banco de dados
+            Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA)
+        ) {
+            // 4. Mensagem de sucesso se a conexão for estabelecida
+            System.out.println("Status: Conexão estabelecida com sucesso!");
+
+            // Verificação adicional para garantir que a conexão está aberta
+            if (conn != null && !conn.isClosed()) {
+                System.out.println("Conexão está aberta e pronta para uso.");
+            }
+
+        // 5. Tratamento de exceções específicas de SQL
+        } catch (SQLException e) {
+            // Mensagem de erro personalizada
+            System.err.println("ERRO: Falha ao estabelecer a conexão JDBC.");
+            
+            // Exibe o código SQL State que pode ajudar na identificação do erro
+            System.err.println("Código SQL State: " + e.getSQLState());
+            
+            // Exibe a mensagem detalhada da exceção
+            System.err.println("Mensagem: " + e.getMessage());
+
+        // 6. Tratamento de outras exceções inesperadas
+        } catch (Exception e) {
+            // Mensagem genérica para qualquer outro tipo de erro
+            System.err.println("ERRO Inesperado: " + e.getMessage());
+        }
+    }
+}
 
