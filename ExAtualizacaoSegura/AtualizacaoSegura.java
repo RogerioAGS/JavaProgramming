@@ -44,9 +44,9 @@ public class AtualizacaoSegura {
 
             // 6. Verificando se a atualização foi bem-sucedida
             if (linhasAfetadas > 0) {
-                System.out.println("✅ Sucesso! " + linhasAfetadas + " linha(s) atualizada(s).");
+                System.out.println("Sucesso! " + linhasAfetadas + " linha(s) atualizada(s).");
             } else {
-                System.out.println("⚠️ Nenhuma linha foi atualizada. O ID " + produtoId + " pode não existir.");
+                System.out.println("Nenhuma linha foi atualizada. O ID " + produtoId + " pode não existir.");
             }
 
         } catch (SQLException e) {
