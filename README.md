@@ -89,7 +89,7 @@ public class TiposDados {
       }  
 }
 
-Seção 1 - Atividade 3: Cast (Conversão de Tipos)
+# Seção 1 - Atividade 3: Cast (Conversão de Tipos)
 Objetivo: Praticar a conversão entre tipos de dados.
 Instruções: O código a seguir está incompleto e não compila devido a erros de tipo. Adicione a conversão (casting) necessária para que o programa compile e imprima os valores corretos.
 
@@ -124,7 +124,7 @@ Instruções: O código a seguir está incompleto e não compila devido a erros 
     
 }
 
-Seção 1 - Atividade 4: Operações Aritméticas
+# Seção 1 - Atividade 4: Operações Aritméticas
 Objetivo: Usar operadores aritméticos com diferentes tipos primitivos.
 Instruções: Crie um programa que faça o seguinte:
 Declare duas variáveis do tipo int.
@@ -192,7 +192,7 @@ int com double (observe o tipo do resultado!)
     
 }
 
-Seção 1 - Atividade 5: Booleans e Lógica
+# Seção 1 - Atividade 5: Booleans e Lógica
 Objetivo: Compreender o uso do tipo boolean e operadores lógicos.
 Instruções: Crie duas variáveis booleanas, estudanteAprovado e temAtestado. Baseado nas variáveis, crie uma expressão booleana que imprima true ou false para as seguintes condições:
 O aluno foi aprovado E não tem atestado.
@@ -225,7 +225,7 @@ O aluno não foi aprovado.
     }
 }
 
-Seção 1 - Exercício 6 - Comentar Programa
+# Seção 1 - Exercício 6 - Comentar Programa
      
      /**
      * A classe 'VarTest' demonstra a declaração e exibicao de
@@ -253,7 +253,7 @@ Seção 1 - Exercício 6 - Comentar Programa
          
      }
 
-Seção 1 - Desafios de Código
+# Seção 1 - Desafios de Código
 Desafio 1: Invertendo Valores
 Objetivo: Utilizar uma variável temporária para trocar os valores de duas variáveis primitivas sem usar List ou Array.
 Instruções: Troque os valores das variáveis a e b. No final, a variável a deve ter o valor 25 e b o valor 10.
@@ -280,7 +280,7 @@ public class Desafio {
     }
 }
 
-Seção 1 - Desafio 2: Média com Precisão
+# Seção 1 - Desafio 2: Média com Precisão
 Objetivo: Lidar com a precisão dos números de ponto flutuante e a conversão de tipos.
 Instruções: Calcule a média de 3 notas. O resultado deve ser um número decimal, mesmo que as notas sejam inteiras.
    
@@ -305,9 +305,9 @@ public class Desafio2 {
     }
 }
 	 
- - Exercício Extra (7)
+# Exercício Extra (7)
 
-     public class StringOperations {
+    public class StringOperations {
     public static void main(String[] args) {
         
     
@@ -326,7 +326,7 @@ public class Desafio2 {
       }
 }
 
-Exercício Oracle input variable
+# Exercício Oracle input variable
           
 import java.util.Scanner;
 /*
@@ -375,7 +375,7 @@ public class InputVariables {
     
 }
 
-Exercício Oracle Age Checker
+# Exercício Oracle Age Checker
                
 import java.util.Scanner;
                
@@ -412,7 +412,7 @@ public class AgeChecker {
     }
 }
 
-Seção 2 - Exercício 1: Crie sua Primeira Classe Encapsulada
+# Seção 2 - Exercício 1: Crie sua Primeira Classe Encapsulada
 Objetivo: Aplicar os conceitos básicos de encapsulamento.
 Instruções:
 Crie uma classe Pessoa.
@@ -464,7 +464,7 @@ public class Pessoa {
     }
 }
 
-Seção 2 - Exercício 2: Validação de Dados
+# Seção 2 - Exercício 2: Validação de Dados
 Objetivo: Usar setters para validar a entrada de dados e garantir a integridade do objeto.
 Instruções:
 Modifique a classe Pessoa do exercício anterior.
@@ -516,7 +516,7 @@ public class Pessoa2 {
     }
 }
 
-Seção 2 - Exercício 3: Classe Produto
+# Seção 2 - Exercício 3: Classe Produto
 Objetivo: Aplicar encapsulamento a uma nova classe com múltiplos atributos.
 Instruções:
 Crie uma classe Produto.
@@ -575,7 +575,7 @@ public class Produto {
     }
 }
 
-Seção 2 - Exercício 4: Controle de Acesso de Escrita
+# Seção 2 - Exercício 4: Controle de Acesso de Escrita
 Objetivo: Criar um atributo que só pode ser lido, mas não modificado.
 Instruções:
 Crie uma classe ContaBancaria.
@@ -772,7 +772,7 @@ public class App {
 	}
 }
 
-Seção 2 - Exercício 5: Atributos Calculados
+# Seção 2 - Exercício 5: Atributos Calculados
 Objetivo: Usar um getter para retornar um valor calculado, em vez de um atributo diretamente armazenado.
 Instruções:
 Crie uma classe Retangulo.
@@ -809,7 +809,7 @@ public class Retangulo {
     }
 }
 
-Seção 2 - Atividade 6: Leitura e Compreensao de Codigo
+# Seção 2 - Atividade 6: Leitura e Compreensao de Codigo
 
 Este exercicio foca na leitura e no entendimento de um codigo pre-escrito, identificando classes, metodos e a interacao entre       objetos.
 
@@ -880,7 +880,7 @@ class Main {
     }
 }
 
-Seção 2 - Atividade 7 ArrayList vs. Array
+# Seção 2 - Atividade 7 ArrayList vs. Array
 
 Este exercício ajuda a entender a diferença fundamental entre ArrayList e Array, especialmente no contexto de tamanho dinâmico.
 
@@ -937,7 +937,7 @@ class Desafio2 {
     }    
 }
 
-Seção 2 - Atividade 8: Herança com ArrayList
+# Seção 2 - Atividade 8: Herança com ArrayList
 
 Este exercício combina os conceitos de herança e ArrayList para criar um sistema mais complexo e funcional.
 
@@ -1046,7 +1046,7 @@ public class HerançaArrayLivro {
     }
 }
 
-Seção 2 - Atividade 9: Modelagem de um Sistema de Veiculos
+# Seção 2 - Atividade 9: Modelagem de um Sistema de Veiculos
 
 Crie um sistema para modelar diferentes tipos de veiculos.
 
@@ -1181,7 +1181,7 @@ class Main {
     }
 }
 
-Seção 2 - Desafio 1: Classificação de Alunos
+# Seção 2 - Desafio 1: Classificação de Alunos
 Objetivo: Combinar encapsulamento com lógica de validação complexa.
 Instruções:
 Crie uma classe Aluno.
@@ -1245,7 +1245,7 @@ public class Aluno {
     }
 }
 
-Seção 2 - Desafio 2: Encapsulamento de Array
+# Seção 2 - Desafio 2: Encapsulamento de Array
 Objetivo: Encapsular um array e fornecer métodos controlados para interagir com ele.
 Instruções:
 Crie uma classe ListaDeCompras.
@@ -1296,7 +1296,7 @@ class Desafio2 {
     } 
 }
 
-Seção 3 - Exercício 1: ArrayList (A Fila de Nomes)
+# Seção 3 - Exercício 1: ArrayList (A Fila de Nomes)
 Objetivo: Mostrar como uma ArrayList mantém a ordem de inserção e permite a adição e a remoção de elementos.
 Imagine que você está criando a lista de presença da turma. A ordem em que os nomes são adicionados importa.
 
@@ -1343,7 +1343,7 @@ public class ExemploHashSet {
     }
 }
 
-Seção 3 - Exercício 3: HashMap (O Dicionário)
+# Seção 3 - Exercício 3: HashMap (O Dicionário)
 Objetivo: Ilustrar como um HashMap armazena dados em pares de chave-valor e permite acesso rápido usando a chave.
 Imagine que você está criando um cadastro de alunos. Cada aluno tem um número de matrícula único (a chave) e um nome (o valor).
 
@@ -1387,7 +1387,7 @@ public class ExemploHashMap {
     }
 }
 
-Seção 4 - Exercicio 01: Analise de URL (String Processing)
+# Seção 4 - Exercicio 01: Analise de URL (String Processing)
 
 Este exercicio utiliza os metodos startsWith(), contains(), indexOf() e substring() para analisar e extrair informacoes de uma URL.
 
@@ -1444,7 +1444,7 @@ public class AnaliseURL {
     }
 }
 
-Seção 4 - Exercicio 02: Parsing de Registro de Dados (String Processing)
+# Seção 4 - Exercicio 02: Parsing de Registro de Dados (String Processing)
 
 Este exercicio utiliza o metodo split() para separar dados estruturados e metodos como toUpperCase() para formatar a saida.
 
@@ -1508,7 +1508,7 @@ public class ParsingRegistro {
     }
 }
 
-Exercicio 03: Construcao e Modificacao Eficiente de Strings
+# Seção 4 - Exercicio 03: Construcao e Modificacao Eficiente de Strings
 
 Este exercicio utiliza a classe StringBuilder para criar e manipular strings de forma mais eficiente do que a concatenacao tradicional com o operador +. Voce usara os metodos append() e deleteCharAt().
 
@@ -1567,7 +1567,7 @@ public class ConstrutorEmail {
     }
 }
 
-Exercicio 04: Validacao de Codigo Numerico (Regex - Parte 1)
+# Seção 4 - Exercicio 04: Validacao de Codigo Numerico (Regex - Parte 1)
 
 Este exercicio utiliza os metacaracteres \d (digito) e o quantificador {n} para garantir que uma string de entrada possua um formato numerico exato.
 
@@ -1603,12 +1603,12 @@ public class ValidacaoCodigoNumerico {
         //Define quatro exemplos de códigos para testar:
         //Um válido e três inválidos por diferentes motivos: quantidade errada de dígitos ou presença de caracteres não numéricos.
         String[] codigos = {
-            "123456",   // ✅ Válido
-            "12345",    // ❌ Inválido (5 dígitos)
-            "12345a",   // ❌ Inválido (contém letra)
-            "1234567",  // ❌ Inválido (7 dígitos)
-            "abcdef",   // ❌ Inválido (só letras)
-            "000000"    // ✅ Válido (todos zeros)
+            "123456",   // Válido
+            "12345",    // Inválido (5 dígitos)
+            "12345a",   // Inválido (contém letra)
+            "1234567",  // Inválido (7 dígitos)
+            "abcdef",   // Inválido (só letras)
+            "000000"    // Válido (todos zeros)
         };
 
         //Imprime o padrão usado e uma linha divisória para organizar visualmente a saída.
@@ -1632,11 +1632,11 @@ public class ValidacaoCodigoNumerico {
         boolean isValido = matcher.matches(); // Verifica se a string inteira corresponde ao padrão
         //Imprime o resultado da validação de forma clara e formatada.
         //Usa operador ternário para decidir entre "VALIDO" e "INVALIDO".
-        System.out.printf("Código '%s': %s%n", codigo, isValido ? "✅ VÁLIDO" : "❌ INVÁLIDO");
+        System.out.printf("Código '%s': %s%n", codigo, isValido ? " VÁLIDO" : " INVÁLIDO");
     }
 }
 
-Exercicio 05: Busca de Ocorrencias (Regex - Parte 1)
+# Seção 4 - Exercicio 05: Busca de Ocorrencias (Regex - Parte 1)
 
 Este segundo exercicio para a Secao 4.2 foca na busca de multiplas ocorrencias dentro de um texto, utilizando os metacaracteres \w (caractere de palavra), o quantificador {n,} e o metodo find() da classe Matcher.
 
@@ -1688,7 +1688,7 @@ public class BuscaPalavrasLongas {
     }
 }
 
-Exercicio 06: Extracao de Componentes de Data (Regex - Parte 2)
+Seção 4 - Exercicio 06: Extracao de Componentes de Data (Regex - Parte 2)
 
 Este exercicio eh o primeiro focado na parte 2 da Secao 4.2 (Quinta-feira), utilizando o conceito crucial de Grupos de Captura (()) para extrair dados estruturados e os metodos find() e group(n).
 
@@ -1753,7 +1753,7 @@ public class ExtracaoData {
     }
 }
 
-xercicio Extra: Reverter uma String Recursivamente
+# Seção 4 - Exercicio Extra: Reverter uma String Recursivamente
 
 Este e um excelente exercicio de recursao linear para consolidar os conceitos de Caso Base e Chamada Recursiva. Ele forca o aluno a pensar em como o resultado das chamadas mais profundas eh construido e retornado.
 
@@ -1807,7 +1807,7 @@ public class ReversaoRecursiva {
     }
 }
 
-Seção 5 - Exercício 1: Calculadora Simples de Soma
+# Seção 5 - Exercício 1: Calculadora Simples de Soma
 Crie um programa que faça o seguinte:
 Solicite ao usuário que digite o primeiro número inteiro.
 Solicite ao usuário que digite o segundo número inteiro.
@@ -1866,7 +1866,7 @@ public class CalculadoraSomaSimples {
     }
 }
 
-Seção 5 - Exercício 2: Conversor de Metros para Centímetros
+# Seção 5 - Exercício 2: Conversor de Metros para Centímetros
 Crie um programa que interaja com o usuário para realizar uma conversão de unidades:
 Solicite ao usuário que digite um valor em metros (use um tipo de ponto flutuante, como double).
 Calcule o valor equivalente em centímetros (1 metro = 100 centímetros).
@@ -1927,7 +1927,7 @@ public class ConversorUnidades {
     }
 }
 
-Exercício 3: Mensagem de Perfil
+# Seção - Exercício 3: Mensagem de Perfil
 Crie um programa que colete três informações distintas do usuário e as combine em uma única mensagem de saída:
 Peça o nome completo (String).
 Peça a cidade onde mora (String).
@@ -1984,8 +1984,8 @@ public class MensagemDePerfil {
     }
 }
 
-Desafios (Aprofundamento em I/O)
-Seção 5 - Desafio 1: Inversor de Palavras e Linhas Múltiplas
+# Seção 5 - Desafios (Aprofundamento em I/O)
+# Seção 5 - Desafio 1: Inversor de Palavras e Linhas Múltiplas
 Crie um programa que lide com a leitura de múltiplas palavras na mesma linha e depois inverta uma delas:
 Solicite ao usuário que digite três palavras separadas por espaço (ex: "Java é legal"). Use apenas uma chamada nextLine().
 Use o método split() da String para dividir a entrada em um array de Strings (tokens).
@@ -2059,7 +2059,7 @@ public class InversorDePalavras {
     }
 }
 
-Seção 5 - Exercício 1: Leitura Simples de Arquivo de Texto (Character Streams)
+# Seção 5 - Exercício 1: Leitura Simples de Arquivo de Texto (Character Streams)
 Crie um programa que leia um arquivo de texto existente e imprima seu conteúdo no console.
 Crie manualmente um arquivo chamado entrada.txt na raiz do seu projeto e adicione algumas linhas de texto nele.
 No seu código Java, use a classe FileReader (Stream de Caractere) para abrir o arquivo.
@@ -2108,7 +2108,7 @@ public class EscritaDadosBrutos {
     }
 }
 
-Seção 5 - Desafio 2: Cálculo de IMC com Controle de Ponto Flutuante
+# Seção 5 - Desafio 2: Cálculo de IMC com Controle de Ponto Flutuante
 Crie um programa completo para calcular o Índice de Massa Corporal (IMC) de uma pessoa, tratando os dados com precisão:
 Solicite o peso da pessoa em quilogramas (double).
 Solicite a altura da pessoa em metros (double).
@@ -2167,7 +2167,7 @@ public class CalculadoraIMC {
     }
 }
 
-Seção 5 - Exercício 2: Escrita de Dados Brutos em Arquivo (Byte Streams)
+# Seção 5 - Exercício 2: Escrita de Dados Brutos em Arquivo (Byte Streams)
 Crie um programa que grave dados binários (bytes) em um novo arquivo.
 Crie um array de bytes com alguns números (ex: byte[] dados = {10, 20, 30, 40, 50};).
 Use a classe FileOutputStream (Stream de Byte) para criar e abrir um arquivo chamado dados_brutos.dat.
@@ -2233,7 +2233,7 @@ public class LeituraArquivoSimples {
 }
 
 
-#Exercício 3: Criação de Objeto Serializável
+# Seção 5 - Exercício 3: Criação de Objeto Serializável
 Crie uma classe Produto simples e prepare-a para serialização.
 Crie uma classe chamada Produto com os seguintes campos:
 String nome
@@ -2314,7 +2314,7 @@ public class Produto implements Serializable {
     }
 }
 
-#Seção 5 - Desafio 1: Processamento de Arquivo de Texto com Buffering e Linhas
+# Seção 5 - Desafio 1: Processamento de Arquivo de Texto com Buffering e Linhas
 Crie um programa que utilize streams com buffer para leitura eficiente e reescreva um arquivo com numeração de linhas.
 Use o arquivo entrada.txt do Exercício 1.
 Use BufferedReader para a leitura eficiente e BufferedWriter para a escrita.
@@ -2394,7 +2394,7 @@ public class NumeradorDeLinhas {
     }
 }
 
-Seção 5 - Desafio 2: Serialização e Desserialização Completa de Objeto
+# Seção 5 - Desafio 2: Serialização e Desserialização Completa de Objeto
 Implemente a lógica completa de salvar e carregar o objeto criado no Exercício 3.
 Usando a classe Produto (serializável), crie uma instância de um produto (ex: nome="Celular", preco=1500.0, codigo=101).
 Serialização:
@@ -2922,7 +2922,7 @@ public class AplicacaoConfig {
     }
 }
 
-# Exercício 3: Preparando para Implantação (JAR Executável)
+# Seção 5 - Exercício 3: Preparando para Implantação (JAR Executável)
 Descreva as etapas para criar um arquivo JAR executável para o projeto criado no Exercício 1, que será a forma de implantação mais básica.
 Liste os três elementos/artefatos que precisam estar dentro do arquivo JAR para que ele seja executável.
 Descreva a função do arquivo MANIFEST.MF nesse contexto, especificando qual atributo chave é obrigatório.
@@ -3083,7 +3083,7 @@ Foco: Introdução aos conceitos de Gerenciamento de Dependências e Build Tools
 Desafio 3 aborda o gerenciamento de dependências, que é o coração de qualquer projeto Java moderno e crucial para a implantação.
 Vamos analisar o papel do Maven e seus conceitos-chave, como pom.xml e dependências.
 
-Desafio 3: Gerenciamento de Dependências com Maven
+# Seção 5 - Desafio 3: Gerenciamento de Dependências com Maven
 1. O que é uma Dependência no Contexto do Maven?
 No contexto do Maven, uma Dependência é um projeto de software externo (geralmente uma biblioteca JAR) do qual seu projeto necessita para compilar, executar ou testar.
 Em vez de baixar manualmente o JAR e colocá-lo na pasta lib do seu projeto, você simplesmente declara a dependência no Maven, e a ferramenta cuida do download, do armazenamento e da inclusão automática no seu classpath.
@@ -3455,7 +3455,7 @@ _________________
 rs._________________
 
 
-Exercício: Programando com JDBC PreparedStatement
+# Seção 6 - Exercício: Programando com JDBC PreparedStatement
 Este exercício reforça a segurança, a clareza e o desempenho do PreparedStatement comparado ao Statement simples.
 O Cenário
 Você precisa atualizar o preço (PRECO) de um produto específico (ID) na tabela PRODUTOS.
