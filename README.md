@@ -3532,3 +3532,64 @@ public class AtualizacaoSegura {
         }
     }
 }
+
+Seção 7 - Exercício 1: Alocação de Objetos e Primitivos (Heap vs. Stack)
+O objetivo é diferenciar onde as variáveis primitivas e as instâncias de objetos são armazenadas.
+O Código Base
+Analise a classe e, na seção de preenchimento, indique a área de memória para cada elemento.
+Java
+public class AlocacaoMemoria1 {
+
+    // VARIÁVEL A: Variável estática (parte da classe)
+    private static final String NOME_CLASSE = "Produto"; 
+
+    public void criarProduto(int id) {
+        
+        // VARIÁVEL B: Variável local primitiva
+        double preco = 50.0; 
+        
+        // VARIÁVEL C: Objeto instanciado
+        String descricao = new String("Monitor LED");
+        
+        // VARIÁVEL D: Referência local ao objeto
+        Produto meuProduto = new Produto(id, descricao, preco); 
+        
+        // ... (método termina)
+    } 
+
+    // Classe de exemplo (simplificada)
+    static class Produto {
+        int id;
+        String nome;
+        double valor;
+        public Produto(int id, String nome, double valor) {
+            this.id = id; this.nome = nome; this.valor = valor;
+        }
+    }
+}
+
+Tarefa do Aluno (Preenchimento)
+Preencha a tabela indicando a Área de Memória (Stack, Heap ou Method Area/Metaspace) onde o valor de cada elemento reside.
+Elemento
+Onde a Variável/Referência reside (Aonde o Nome está)
+Onde o Valor/Objeto reside (Aonde os Dados estão)
+Estrutura da Classe (AlocacaoMemoria1)
+N/A
+Method Area / Metaspace
+VARIÁVEL A (NOME_CLASSE)
+Method Area / Metaspace
+_________________________
+VARIÁVEL B (preco)
+_________________________
+_________________________
+VARIÁVEL C ("Monitor LED")
+_________________________
+_________________________
+VARIÁVEL D (meuProduto - a referência)
+_________________________
+N/A
+Objeto new Produto(...) (o objeto real)
+N/A
+_________________________
+
+Exportar para as Planilhas
