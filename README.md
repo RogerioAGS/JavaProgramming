@@ -3568,28 +3568,5 @@ public class AlocacaoMemoria1 {
     }
 }
 
-Tarefa do Aluno (Preenchimento)
-Preencha a tabela indicando a Área de Memória (Stack, Heap ou Method Area/Metaspace) onde o valor de cada elemento reside.
-Elemento
-Onde a Variável/Referência reside (Aonde o Nome está)
-Onde o Valor/Objeto reside (Aonde os Dados estão)
-Estrutura da Classe (AlocacaoMemoria1)
-N/A
-Method Area / Metaspace
-VARIÁVEL A (NOME_CLASSE)
-Method Area / Metaspace
-_________________________
-VARIÁVEL B (preco)
-_________________________
-_________________________
-VARIÁVEL C ("Monitor LED")
-_________________________
-_________________________
-VARIÁVEL D (meuProduto - a referência)
-_________________________
-N/A
-Objeto new Produto(...) (o objeto real)
-N/A
-_________________________
 
-Exportar para as Planilhas
+<img width="615" height="436" alt="Captura de tela 2025-10-14 195943" src="https://github.com/user-attachments/assets/f6dfa160-0440-4a97-aa4d-8ff101a1d304" />
