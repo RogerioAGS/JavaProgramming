@@ -3570,3 +3570,104 @@ public class AlocacaoMemoria1 {
 
 
 <img width="615" height="436" alt="Captura de tela 2025-10-14 195943" src="https://github.com/user-attachments/assets/f6dfa160-0440-4a97-aa4d-8ff101a1d304" />
+
+public class AlocacaoMemoria1 {
+
+    // VARIÁVEL A: Variável estática (parte da classe)
+     
+ private static String NOMECLASSE ;
+
+    public void criarProduto(int id) {
+        
+        // VARIÁVEL B: Variável local primitiva
+        double preco = 50.0; 
+        
+        // VARIÁVEL C: Objeto instanciado
+        String descricao = new String("Monitor LED");
+        
+        // VARIÁVEL D: Referência local ao objeto
+        Produto meuProduto = new Produto(id, descricao, preco); 
+        
+        // ... (método termina)
+    } 
+
+    // Classe de exemplo (simplificada)
+    static class Produto {
+        int id;
+        String nome;
+        double valor;
+        public Produto(int id, String nome, double valor) {
+            this.id = id; this.nome = nome; this.valor = valor;
+        }
+        public static void main(String[] args) {
+            Produto Produto = new Produto(12, NOMECLASSE, 12500);
+
+            System.out.println(Produto);
+            
+        }
+       
+    }
+}
+
+// Classe principal que demonstra alocação de memória em Java
+public class AlocacaoMemoria1 {
+
+    // VARIÁVEL A: Variável estática da classe
+    // Armazenada na Method Area / Metaspace
+    private static String NOMECLASSE = "Monitor LED";
+
+    // Método de instância que cria um objeto Produto
+    public void criarProduto(int id) {
+        // VARIÁVEL B: Variável local primitiva
+        // Armazenada na Stack
+        double preco = 50.0;
+
+        // VARIÁVEL C: Objeto String instanciado explicitamente
+        // Referência na Stack, objeto na Heap
+        String descricao = new String("Monitor LED");
+
+        // VARIÁVEL D: Referência local ao objeto Produto
+        // Referência na Stack, objeto na Heap
+        Produto meuProduto = new Produto(id, descricao, preco);
+
+        // Exibe o produto criado
+        System.out.println("Produto criado: " + meuProduto);
+    }
+
+    // Classe interna estática que representa um produto
+    static class Produto {
+        // Campos do objeto Produto
+        // Armazenados na Heap como parte do objeto
+        int id;
+        String nome;
+        double valor;
+
+        // Construtor que inicializa os campos do objeto
+        public Produto(int id, String nome, double valor) {
+            this.id = id;
+            this.nome = nome;
+            this.valor = valor;
+        }
+
+        // Método que retorna uma representação textual do objeto
+        @Override
+        public String toString() {
+            return "Produto{id=" + id + ", nome='" + nome + "', valor=" + valor + "}";
+        }
+    }
+
+    // Método principal que inicia o programa
+    public static void main(String[] args) {
+        // Cria uma instância da classe principal
+        AlocacaoMemoria1 exemplo = new AlocacaoMemoria1();
+
+        // Chama o método que cria um produto
+        exemplo.criarProduto(101);
+
+        // Cria outro produto usando a variável estática NOMECLASSE
+        Produto outroProduto = new Produto(12, NOMECLASSE, 12500);
+
+        // Exibe o segundo produto
+        System.out.println("Outro produto: " + outroProduto);
+    }
+}
