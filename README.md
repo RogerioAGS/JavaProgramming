@@ -3671,3 +3671,47 @@ public class AlocacaoMemoria1 {
         System.out.println("Outro produto: " + outroProduto);
     }
 }
+
+Seção 7 - Exercício 2: Frames da Pilha (Stack) e Variáveis Locais
+O objetivo é entender como a Pilha (Stack) funciona com a chamada de métodos.
+
+// Classe principal que contém os métodos para demonstrar alocação de memória na pilha
+public class AlocacaoMemoria2 {
+
+    // Método A: ponto de entrada do programa
+    public static void main(String[] args) { 
+        // VARIÁVEL A: variável local do tipo String
+        // Armazenada no Frame 1 da pilha (stack). O valor "Inicial" é um objeto alocado no Heap.
+        String s = "Inicial"; 
+        
+        // Chamada 1: invocação do método B
+        // Cria o Frame 2 na pilha, acima do Frame 1
+        chamarMetodoB(10);     
+    }
+
+    // Método B: recebe um inteiro como parâmetro
+    public static int chamarMetodoB(int x) { 
+        // VARIÁVEL B: variável local do tipo boolean
+        // Armazenada no Frame 2 da pilha, junto com o parâmetro x
+        boolean flag = true; 
+        
+        // Chamada 2: invocação do método C
+        // Cria o Frame 3 na pilha, acima do Frame 2
+        return chamarMetodoC(x, flag); 
+    }
+
+    // Método C: recebe dois parâmetros e realiza um cálculo
+    public static int chamarMetodoC(int a, boolean b) { 
+        // VARIÁVEL C: variável local do tipo int
+        // Armazenada no Frame 3 da pilha, junto com os parâmetros a e b
+        int resultado = a * 2; 
+        
+        // Retorna o resultado da multiplicação
+        // Após o retorno, o Frame 3 é destruído e a memória de a, b e resultado é liberada
+        return resultado;
+    } 
+}
+
+<img width="552" height="570" alt="Captura de tela 2025-10-16 192501" src="https://github.com/user-attachments/assets/bec39775-49d4-461a-bdb3-9fc24ad37f53" />
+
+
