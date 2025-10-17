@@ -3715,3 +3715,28 @@ public class AlocacaoMemoria2 {
 <img width="552" height="570" alt="Captura de tela 2025-10-16 192501" src="https://github.com/user-attachments/assets/bec39775-49d4-461a-bdb3-9fc24ad37f53" />
 
 
+Seção 7 - Exercício 3: Distinção entre Heap e Metaspace
+O objetivo é entender a diferença entre o Heap (dados de objetos) e o Method Area/Metaspace (metadados da classe).
+
+// Declaração da classe pública chamada AlocacaoMemoria3
+public class AlocacaoMemoria3 {
+
+    // Campo estático e final: pertence à classe, não a instâncias
+    // Armazenado na área de memória chamada Metaspace (antiga Method Area)
+    private static final int MAX_VALOR = 1000; 
+
+    // Método principal que inicia a execução do programa
+    public static void main(String[] args) {
+        
+        // Loop que será executado 5 vezes
+        for (int i = 0; i < 5; i++) {
+            
+            // Criação explícita de um novo objeto String
+            // Cada objeto é alocado na memória Heap
+            new String("Objeto " + i);
+            
+            // A variável 'i' é uma variável local do método
+            // Armazenada na Stack, junto com o contexto da chamada do método main
+        }
+    }
+}
