@@ -3740,3 +3740,42 @@ public class AlocacaoMemoria3 {
         }
     }
 }
+
+Exercício 3: Distinção entre Heap e Metaspace
+O objetivo é entender a diferença entre o Heap (dados de objetos) e o Method Area/Metaspace (metadados da classe).
+O Código Base
+Java
+public class AlocacaoMemoria3 {
+
+    // Campo estático (Parte da definição da classe)
+    private static final int MAX_VALOR = 1000; 
+
+    public static void main(String[] args) {
+        // Alocação de 5 objetos no Heap
+        for (int i = 0; i < 5; i++) {
+            new String("Objeto " + i);
+        }
+    }
+}
+
+Tarefa do Aluno (Múltipla Escolha e Racional)
+Qual das afirmações a seguir é a MAIS PRECISA em relação ao armazenamento dos componentes desta classe?
+A. Tanto o bytecode da classe AlocacaoMemoria3 quanto os 5 objetos String instanciados residem no Heap. B. O bytecode da classe AlocacaoMemoria3 e o valor de MAX_VALOR residem no Metaspace, enquanto os 5 objetos String residem no Heap. C. Tudo, incluindo o main e suas variáveis locais, é armazenado no Heap, pois é a maior área de memória. D. A área de memória Stack é usada para armazenar todos os 5 objetos String e a constante MAX_VALOR.
+Resposta Correta
+Racional (Explique por que as outras estão incorretas)
+
+7. Qual é a principal diferença entre o Statement e o PreparedStatement em termos de segurança e performance?
+Resposta Correta: O PreparedStatement usa? como placeholders para vincular valores (Parâmetros), o que previne SQL Injection e permite que o banco pré-compile a instrução, melhorando a performance em execuções repetidas.
+PreparedStatement usa? como placeholders para vincular valores (Parâmetros), o que previne SQL Injection e permite que o banco pré-compile a instrução, melhorando a performance em execuções repetidas. O Statement simplesmente executa a string SQL, sendo inseguro se a string for construída por concatenação.
+Racional (Explique por que as outras estão incorretas): O Statement simplesmente executa uma string SQL, sendo inseguro se a string for construída por concatenação.
+
+8. O que acontece com a memória do Stack (Pilha) após o término de um método (ex: main() ou chamarMétodoB())?
+Resposta Correta: O Frame associado a esse método é removido (desempilhado).
+Racional (Explique por que as outras estão incorretas): Todas as variáveis locais e referências contidas no Frame são destruídas ou perdidas.
+
+9. Qual é a principal diferença de propósito entre o Heap e o Method Area/Metaspace?
+Resposta Correta: O Heap armazena objetos instanciados e arrays (dados em tempo de execução).
+O Frame associado a esse método é removido (desempilhado), e todas as variáveis locais e referências contidas nele são destruídas ou perdidas.
+O Heap armazena objetos instanciados e arrays (dados em tempo de execução). O Method Area/Metaspace armazena os metadados da classe (estrutura, constantes, código de método) necessários para a JVM entender e executar a classe.
+Racional (Explique por que as outras estão incorretas): O Method Area/Metaspace armazena os metadados da classe (estrutura, constantes, código de método) necessários para a JVM entender e executar a classe.
+
