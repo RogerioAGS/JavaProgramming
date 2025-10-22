@@ -3779,3 +3779,59 @@ O Frame associado a esse método é removido (desempilhado), e todas as variáve
 O Heap armazena objetos instanciados e arrays (dados em tempo de execução). O Method Area/Metaspace armazena os metadados da classe (estrutura, constantes, código de método) necessários para a JVM entender e executar a classe.
 Racional (Explique por que as outras estão incorretas): O Method Area/Metaspace armazena os metadados da classe (estrutura, constantes, código de método) necessários para a JVM entender e executar a classe.
 
+Seção 7 - Exercício 1: Ciclo de Vida do Objeto no Heap e o GC
+Este exercício testa o entendimento sobre as gerações do Heap e o processo de coleta de lixo.
+O Código Base
+Considere o seguinte cenário simplificado:
+Um objeto é recém-criado.
+Ele sobrevive ao primeiro ciclo de coleta de lixo.
+Ele sobrevive a mais um ciclo e é promovido.
+Java
+public class CicloDeVidaGC {
+    
+    // Objeto 1: Referência local
+    public static void processarDados() {
+        // Ponto A: O objeto é criado e alocado.
+        ObjetoGrande objA = new ObjetoGrande(1); 
+        
+        // Simula um uso curto.
+        objA.usar(); 
+        
+        // O método termina. A referência local 'objA' é perdida do Stack.
+        // O objeto no Heap está pronto para o GC.
+    }
+    
+    // Objeto 2: Objeto que sobrevive
+    public static void manterReferencia() {
+        ObjetoGrande objB = new ObjetoGrande(2); 
+        // Armazenar objB em uma lista estática (referência global)
+        Cache.adicionar(objB); 
+        // A referência 'objB' é perdida do Stack, mas o objeto VIVE devido à referência em Cache.
+    }
+
+    // Estrutura de exemplo para simular o Cache
+    static class Cache {
+        private static java.util.List<ObjetoGrande> referencias = new java.util.ArrayList<>();
+        public static void adicionar(ObjetoGrande obj) {
+            referencias.add(obj);
+        }
+    }
+    
+    static class ObjetoGrande {
+        private int id;
+        public ObjetoGrande(int id) { this.id = id; }
+        public void usar() { /* ... */ }
+    }
+}
+
+Tarefa do Aluno (Preenchimento)
+Preencha a tabela indicando a área inicial de alocação e o destino provável do objeto.
+
+Tarefa do Aluno (Preenchimento)
+Preencha a tabela indicando a área inicial de alocação e o destino provável do objeto.
+Objeto/Localização	Área Inicial de Alocação no Heap	Onde o objeto vai se (e quando) for coletado?	Onde o Objeto 2 (objB) será promovido, se sobreviver?
+Objeto 1 (objA)	Geração Jovem 
+(Eden)	A memória é liberada, retornando ao pool da Geração Jovem.	N/A (Será coletado)
+Objeto 2 (objB)	Geração Jovem (Eden)	N/A (Vive devido à referência estática)	Geração Antiga (Old Generation)
+
+<img width="1192" height="100" alt="image" src="https://github.com/user-attachments/assets/2cb186d0-d4d8-4597-b734-690a6d41907a" />
