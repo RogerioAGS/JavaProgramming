@@ -3836,7 +3836,7 @@ Objeto 2 (objB)	Geração Jovem (Eden)	N/A (Vive devido à referência estática
 
 <img width="1192" height="100" alt="image" src="https://github.com/user-attachments/assets/2cb186d0-d4d8-4597-b734-690a6d41907a" />
 
-Exercício 2: Gatilhos do Garbage Collection (Minor vs. Full GC)
+Seção 7 - Exercício 2: Gatilhos do Garbage Collection (Minor vs. Full GC)
 Este exercício foca nos gatilhos e escopo dos dois principais tipos de Coleta de Lixo.
 O Código Base
 Não há código a ser completado, apenas a análise do cenário de execução.
@@ -3858,5 +3858,41 @@ Ocorre quando a _________________________ fica muito cheia. Ele limpa todo o Hea
 
 <img width="886" height="155" alt="image" src="https://github.com/user-attachments/assets/4d9aa13c-2ccc-44bf-a774-263a960d797a" />
 
+Exercício 3: OutOfMemoryError e Vazamentos de Memória
+Este exercício aborda as causas e os sintomas de um problema crítico de memória.
+O Código Base (Cenário de Vazamento de Memória)
+O código abaixo simula um vazamento de memória (Memory Leak) no Java, onde objetos criados deveriam ser descartados, mas são mantidos vivos devido a uma referência indesejada.
+Java
+import java.util.ArrayList;
+import java.util.List;
+
+public class TesteOutOfMemory {
+
+    // Referência estática para simular um cache global
+    private static final List<byte[]> DADOS_CACHE = new ArrayList<>();
+
+    public static void carregarDados(int quantidade) {
+        for (int i = 0; i < quantidade; i++) {
+            // Cria um novo array de 1 MB
+            byte[] bloco = new byte[1024 * 1024]; 
+            
+            // O VAZAMENTO DE MEMÓRIA: A referência ao objeto (bloco) é adicionada
+            // ao DADOS_CACHE (que é estático e nunca é limpo).
+            DADOS_CACHE.add(bloco); 
+        }
+        System.out.println("Memória consumida: " + DADOS_CACHE.size() + " MB.");
+    }
+
+    public static void main(String[] args) {
+        // Tentativa de alocar 500 MB em um loop
+        carregarDados(500); 
+        
+        // Se a JVM tiver menos de 500MB de Heap, o erro irá ocorrer aqui.
+    }
+}
+
+Tarefa do Aluno (Múltipla Escolha)
+Se você executar o código acima com um Heap máximo definido como -Xmx256m, qual exceção ou erro será inevitavelmente lançado pela JVM, e qual é a causa principal?
+A. java.lang.StackOverflowError, causado por chamadas de método recursivas. B. java.lang.NullPointerException, causado pelo acesso a um objeto null dentro do loop. C. java.lang.OutOfMemoryError: Java heap space, causado pelo esgotamento da memória Heap devido ao Memory Leak (referências estáticas que impedem o GC). D. java.lang.OutOfMemoryError: Metaspace, causado pelo carregamento excessivo de metadados de classes.
 
 
