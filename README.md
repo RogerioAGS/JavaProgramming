@@ -3835,3 +3835,28 @@ Objeto 1 (objA)	Geração Jovem
 Objeto 2 (objB)	Geração Jovem (Eden)	N/A (Vive devido à referência estática)	Geração Antiga (Old Generation)
 
 <img width="1192" height="100" alt="image" src="https://github.com/user-attachments/assets/2cb186d0-d4d8-4597-b734-690a6d41907a" />
+
+Exercício 2: Gatilhos do Garbage Collection (Minor vs. Full GC)
+Este exercício foca nos gatilhos e escopo dos dois principais tipos de Coleta de Lixo.
+O Código Base
+Não há código a ser completado, apenas a análise do cenário de execução.
+Cenário: Uma aplicação web está em funcionamento.
+Evento A: O Eden Space está quase completamente cheio após a criação de milhares de novos objetos de requisição.
+Evento B: O JConsole (ferramenta de monitoramento) mostra que o Heap está 95% cheio, e a Geração Antiga tem sido a principal responsável pelo alto uso.
+Tarefa do Aluno (Múltipla Escolha e Racional)
+Para cada evento, qual tipo de GC será primeiramente disparado, e por quê?
+
+Evento
+Tipo de GC Provavelmente Disparado
+Racional (Gatilho e Escopo)
+Evento A
+_________________________
+Ocorre quando a _________________________ fica cheia. Ele limpa apenas a Geração Jovem.
+Evento B
+_________________________
+Ocorre quando a _________________________ fica muito cheia. Ele limpa todo o Heap, incluindo as duas gerações.
+
+<img width="886" height="155" alt="image" src="https://github.com/user-attachments/assets/4d9aa13c-2ccc-44bf-a774-263a960d797a" />
+
+
+
